@@ -1,0 +1,19 @@
+services:
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: client_c
+    ports:
+      - "5173:5173"
+
+  backend:
+    build:
+      context: ./ApiForSud/ApiForSud
+      dockerfile: Dockerfile
+    container_name: server_c
+    ports:
+      - "7080:7080"
+    environment:
+      - ASPNETCORE_URLS=http://+:7080
+      - ASPNETCORE_ENVIRONMENT=Production
