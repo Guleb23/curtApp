@@ -3,20 +3,63 @@ import { useAuth } from '../context/AuthContext';
 import api from '../services/authService';
 import CaseForm from './CaseForm';
 import CasesTable from './CasesTable';
-import { Plus, RefreshCw, LogOut } from 'lucide-react';
+import { Plus, RefreshCw, LogOut, Search } from 'lucide-react';
 import AdminTable from './AdminTable';
 import InfoAboutCase from './InfoAboutCase';
 
 const Dashboard = () => {
     const { user, logout, isUser, isAdmin } = useAuth();
     const [cases, setCases] = useState([]);
+    const [filteredCases, setFilteredCases] = useState([]);
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingCase, setEditingCase] = useState(null);
-
     const [detailCase, setDetailCase] = useState(null);
-
     const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = useCallback((term) => {
+        if (!term.trim()) {
+            setFilteredCases(cases);
+            return;
+        }
+
+        const lowercasedTerm = term.toLowerCase();
+        const filtered = cases.filter(caseItem => {
+            // Форматируем дату в формат DD.MM.YYYY для поиска
+            const formattedDate = caseItem.dateOfCurt
+                ? new Date(caseItem.dateOfCurt).toLocaleDateString('ru-RU')
+                : '';
+
+            return (
+                // Поиск по стороне дела (applicant)
+                (caseItem.applicant && caseItem.applicant.toLowerCase().includes(lowercasedTerm)) ||
+                // Поиск по ответчику (defendant)
+                (caseItem.defendant && caseItem.defendant.toLowerCase().includes(lowercasedTerm)) ||
+                // Поиск по отформатированной дате заседания
+                (formattedDate && formattedDate.includes(term)) ||
+                // Поиск по номеру дела
+                (caseItem.nomerOfCase && caseItem.nomerOfCase.toLowerCase().includes(lowercasedTerm)) ||
+                // Поиск по названию суда
+                (caseItem.nameOfCurt && caseItem.nameOfCurt.toLowerCase().includes(lowercasedTerm))
+            );
+        });
+
+        setFilteredCases(filtered);
+    }, [cases]);
+
+    // Обработчик изменения поискового запроса
+    const handleSearchChange = (e) => {
+        const value = e.target.value;
+        setSearchTerm(value);
+        handleSearch(value);
+    };
+
+    // Обработчик очистки поиска
+    const handleClearSearch = () => {
+        setSearchTerm('');
+        setFilteredCases(cases);
+    };
 
     // Объединяем функции загрузки случаев
     const fetchCases = useCallback(async () => {
@@ -25,7 +68,9 @@ const Dashboard = () => {
             const endpoint = isAdmin ? '/case/allcases' : '/case/usercases';
             console.log('Fetching from endpoint:', endpoint);
             const response = await api.get(endpoint);
-            setCases(response.data);
+            const casesData = response.data;
+            setCases(casesData);
+            setFilteredCases(casesData);
         } catch (error) {
             console.error('Error fetching cases:', error);
             alert('Ошибка при загрузке дел');
@@ -38,9 +83,15 @@ const Dashboard = () => {
         fetchCases();
     }, [fetchCases]);
 
+    // Обновляем отфильтрованные данные при изменении исходных данных
+    useEffect(() => {
+        setFilteredCases(cases);
+    }, [cases]);
+
     const handleLogout = async () => {
         await logout();
     };
+
     // Обработчик создания/обновления дела
     const handleCaseCreated = () => {
         fetchCases();
@@ -58,6 +109,7 @@ const Dashboard = () => {
             alert('Ошибка при загрузке дела');
         }
     };
+
     const handleDetail = async (c) => {
         const caseId = c.id;
         console.log(caseId);
@@ -72,10 +124,7 @@ const Dashboard = () => {
             console.error('Error loading case:', error);
             alert('Ошибка при загрузке дела');
         }
-
     };
-
-
 
     // Обработчик закрытия модалки
     const handleCloseModal = () => {
@@ -86,6 +135,7 @@ const Dashboard = () => {
     const handleCloseAdmin = () => {
         setIsAdminModalOpen(false);
     };
+
     // Открытие модалки для создания нового дела
     const handleNewCase = () => {
         setEditingCase(null);
@@ -99,7 +149,7 @@ const Dashboard = () => {
         if (isAdmin) {
             return (
                 <AdminTable
-                    cases={cases}
+                    cases={filteredCases}
                     loading={loading}
                     onRefresh={fetchCases}
                     onDetailInfo={handleDetail}
@@ -108,7 +158,7 @@ const Dashboard = () => {
         } else if (isUser) {
             return (
                 <CasesTable
-                    cases={cases}
+                    cases={filteredCases}
                     loading={loading}
                     onRefresh={fetchCases}
                     onEditCase={handleDetailOrEditCase}
@@ -167,6 +217,34 @@ const Dashboard = () => {
                 </div>
             </div>
 
+            {/* Панель поиска */}
+            <div style={styles.searchContainer}>
+                <div style={styles.searchInputContainer}>
+                    <Search size={20} style={styles.searchIcon} />
+                    <input
+                        type="text"
+                        placeholder="Поиск по делам: сторона, истец, ответчик, дата заседания..."
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                        style={styles.searchInput}
+                    />
+                    {searchTerm && (
+                        <button
+                            onClick={handleClearSearch}
+                            style={styles.clearButton}
+                        >
+                            ×
+                        </button>
+                    )}
+                </div>
+                {searchTerm && (
+                    <div style={styles.searchInfo}>
+                        Найдено дел: {filteredCases.length}
+                        {filteredCases.length !== cases.length && ` из ${cases.length}`}
+                    </div>
+                )}
+            </div>
+
             {/* Основной контент */}
             {renderContent()}
 
@@ -185,7 +263,6 @@ const Dashboard = () => {
                     isOpen={isAdminModalOpen}
                     onClose={handleCloseAdmin}
                     caseData={detailCase}
-
                 />
             )}
 
@@ -294,6 +371,58 @@ const styles = {
         borderRadius: '8px',
         textAlign: 'center',
         color: '#e53e3e'
+    },
+    searchContainer: {
+        marginBottom: '24px',
+        padding: '16px',
+        backgroundColor: 'white',
+        borderRadius: '8px',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+    },
+    searchInputContainer: {
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        maxWidth: '600px'
+    },
+    searchIcon: {
+        position: 'absolute',
+        left: '12px',
+        color: '#718096'
+    },
+    searchInput: {
+        width: '100%',
+        padding: '12px 40px 12px 40px',
+        border: '1px solid #e2e8f0',
+        borderRadius: '6px',
+        fontSize: '14px',
+        outline: 'none',
+        transition: 'border-color 0.2s',
+        paddingLeft: '40px',
+        paddingRight: '40px',
+        ':focus': {
+            borderColor: '#3182ce'
+        }
+    },
+    clearButton: {
+        position: 'absolute',
+        right: '12px',
+        background: 'none',
+        border: 'none',
+        fontSize: '18px',
+        color: '#718096',
+        cursor: 'pointer',
+        padding: '0',
+        width: '20px',
+        height: '20px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    searchInfo: {
+        marginTop: '8px',
+        fontSize: '12px',
+        color: '#718096'
     }
 };
 
