@@ -18,5 +18,9 @@ namespace ApiForSud.Services.CaseService
         public Task<CaseResponseDTO> UpdateCase(CaseDTO caseDTO, Guid userId, Guid caseId, List<CurtInstaceDTO> curtInstaces);
 
         public Task<bool> DeleteCase(Guid caseId, Guid userId);
+
+        Task<bool> MarkerByAdmin(Guid caseId);
+
+        Task<bool> UnMarkerByAdmin(Guid caseId);
     }
 }

@@ -130,5 +130,35 @@ namespace ApiForSud.Controllers
             }
 
         }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost("marker/[caseId]")]
+        public async Task<ActionResult<bool>> MarkerCase(Guid caseId)
+        {
+            if(caseId == null)
+            {
+                return BadRequest("");
+            }
+            else
+            {
+                await _caseService.MarkerByAdmin(caseId);
+                return Ok(true);
+            }
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost("unmarker/[caseId]")]
+        public async Task<ActionResult<bool>> UnMarkerCase(Guid caseId)
+        {
+            if (caseId == null)
+            {
+                return BadRequest("");
+            }
+            else
+            {
+                await _caseService.UnMarkerByAdmin(caseId);
+                return Ok(true);
+            }
+        }
     }
 }

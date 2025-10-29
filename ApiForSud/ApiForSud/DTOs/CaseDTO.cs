@@ -18,5 +18,9 @@
 
         public DateTime? DateOfResult { get; set; }
 
+        public bool IsMarkeredByAdmin { get; set; }
+
+        public bool IsUnMarkeredByAdmin { get; set; }
+
     }
 }

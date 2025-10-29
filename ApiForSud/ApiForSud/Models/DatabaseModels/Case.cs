@@ -25,6 +25,10 @@ namespace ApiForSud.Models.DatabaseModels
 
         public Guid UserId { get; set; }
 
+        public bool IsMarkeredByAdmin { get; set; } = false;
+
+        public bool IsUnMarkeredByAdmin { get; set; } = false;
+
         public virtual User User { get; set; } = null;
 
         public virtual ICollection<CurtInstance> CurtInstances { get; set; } = new List<CurtInstance>();

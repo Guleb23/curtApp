@@ -11,6 +11,9 @@
         public DateTime? DateOfCurt { get; set; }
         public string ResultOfCurt { get; set; } = string.Empty;
         public DateTime? DateOfResult { get; set; }
+        public bool IsMarkeredByAdmin { get; set; }
+
+        public bool IsUnMarkeredByAdmin { get; set; }
         public List<CurtInstanceResponseDTO> CurtInstances { get; set; } = new();
     }
 }

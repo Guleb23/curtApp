@@ -212,5 +212,42 @@ namespace ApiForSud.Services.CaseService
                 .FirstOrDefaultAsync();
         }
 
+        public async Task<bool> MarkerByAdmin(Guid caseId)
+        {
+            var currentCase = await _dbContext.Cases.FirstOrDefaultAsync(c => c.Id == caseId);
+
+            if (currentCase == null) 
+            {
+                return false;
+            }
+            else
+            {
+                currentCase.IsMarkeredByAdmin = true;
+                currentCase.IsUnMarkeredByAdmin = false;
+
+                await _dbContext.SaveChangesAsync();
+
+                return true;
+            }
+        }
+
+        public async Task<bool> UnMarkerByAdmin(Guid caseId)
+        {
+            var currentCase = await _dbContext.Cases.FirstOrDefaultAsync(c => c.Id == caseId);
+
+            if (currentCase == null)
+            {
+                return false;
+            }
+            else
+            {
+                currentCase.IsMarkeredByAdmin = false;
+                currentCase.IsUnMarkeredByAdmin = true;
+                await _dbContext.SaveChangesAsync();
+
+                return true;
+            }
+
+        }
     }
 }
