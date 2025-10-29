@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import api from '../services/authService';
 import CaseForm from './CaseForm';
 import CasesTable from './CasesTable';
-import { Plus, RefreshCw, LogOut, Search } from 'lucide-react';
+import { Plus, RefreshCw, LogOut, Search, AlertTriangle } from 'lucide-react';
 import AdminTable from './AdminTable';
 import InfoAboutCase from './InfoAboutCase';
 
@@ -17,6 +17,22 @@ const Dashboard = () => {
     const [detailCase, setDetailCase] = useState(null);
     const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
+    const [expiredCases, setExpiredCases] = useState([]);
+
+    // Функция для проверки просроченных дел
+    const checkExpiredCases = useCallback((casesData) => {
+        const now = new Date();
+        const expired = casesData.filter(caseItem => {
+            if (!caseItem.dateOfResult) return false;
+
+            const resultDate = new Date(caseItem.dateOfResult);
+            const daysDiff = Math.floor((now - resultDate) / (1000 * 60 * 60 * 24));
+
+            return daysDiff > 20;
+        });
+
+        setExpiredCases(expired);
+    }, []);
 
     const handleSearch = useCallback((term) => {
         if (!term.trim()) {
@@ -71,13 +87,14 @@ const Dashboard = () => {
             const casesData = response.data;
             setCases(casesData);
             setFilteredCases(casesData);
+            checkExpiredCases(casesData);
         } catch (error) {
             console.error('Error fetching cases:', error);
             alert('Ошибка при загрузке дел');
         } finally {
             setLoading(false);
         }
-    }, [isAdmin]);
+    }, [isAdmin, checkExpiredCases]);
 
     useEffect(() => {
         fetchCases();
@@ -86,7 +103,8 @@ const Dashboard = () => {
     // Обновляем отфильтрованные данные при изменении исходных данных
     useEffect(() => {
         setFilteredCases(cases);
-    }, [cases]);
+        checkExpiredCases(cases);
+    }, [cases, checkExpiredCases]);
 
     const handleLogout = async () => {
         await logout();
@@ -153,6 +171,7 @@ const Dashboard = () => {
                     loading={loading}
                     onRefresh={fetchCases}
                     onDetailInfo={handleDetail}
+                    expiredCases={expiredCases}
                 />
             );
         } else if (isUser) {
@@ -163,6 +182,7 @@ const Dashboard = () => {
                     onRefresh={fetchCases}
                     onEditCase={handleDetailOrEditCase}
                     fetchUserCases={fetchCases}
+                    expiredCases={expiredCases}
                 />
             );
         } else {
@@ -216,6 +236,38 @@ const Dashboard = () => {
                     </button>
                 </div>
             </div>
+
+            {/* Уведомление о просроченных делах */}
+            {expiredCases.length > 0 && (
+                <div style={styles.alertContainer}>
+                    <div style={styles.alertHeader}>
+                        <AlertTriangle size={20} style={styles.alertIcon} />
+                        <span style={styles.alertTitle}>
+                            Внимание: Просроченные дела
+                        </span>
+                    </div>
+                    <div style={styles.alertContent}>
+                        <p>Обнаружено {expiredCases.length} дел, где прошло более 20 дней с момента решения:</p>
+                        <ul style={styles.alertList}>
+                            {expiredCases.slice(0, 5).map((caseItem, index) => (
+                                <li key={caseItem.id} style={styles.alertListItem}>
+                                    <strong>Дело №{caseItem.nomerOfCase}</strong> - {caseItem.applicant} vs {caseItem.defendant}
+                                    {caseItem.dateOfResult && (
+                                        <span style={styles.alertDate}>
+                                            (Решение: {new Date(caseItem.dateOfResult).toLocaleDateString('ru-RU')})
+                                        </span>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                        {expiredCases.length > 5 && (
+                            <p style={styles.alertMore}>
+                                ... и еще {expiredCases.length - 5} дел
+                            </p>
+                        )}
+                    </div>
+                </div>
+            )}
 
             {/* Панель поиска */}
             <div style={styles.searchContainer}>
@@ -399,10 +451,7 @@ const styles = {
         outline: 'none',
         transition: 'border-color 0.2s',
         paddingLeft: '40px',
-        paddingRight: '40px',
-        ':focus': {
-            borderColor: '#3182ce'
-        }
+        paddingRight: '40px'
     },
     clearButton: {
         position: 'absolute',
@@ -423,6 +472,51 @@ const styles = {
         marginTop: '8px',
         fontSize: '12px',
         color: '#718096'
+    },
+    // Стили для уведомления
+    alertContainer: {
+        marginBottom: '24px',
+        padding: '16px',
+        backgroundColor: '#fffaf0',
+        border: '1px solid #fbd38d',
+        borderRadius: '8px',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
+    },
+    alertHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        marginBottom: '8px'
+    },
+    alertIcon: {
+        color: '#dd6b20',
+        marginRight: '8px'
+    },
+    alertTitle: {
+        fontWeight: '600',
+        color: '#dd6b20',
+        fontSize: '16px'
+    },
+    alertContent: {
+        color: '#744210',
+        fontSize: '14px'
+    },
+    alertList: {
+        margin: '8px 0',
+        paddingLeft: '20px'
+    },
+    alertListItem: {
+        marginBottom: '4px',
+        lineHeight: '1.4'
+    },
+    alertDate: {
+        color: '#975a16',
+        fontSize: '12px',
+        marginLeft: '8px'
+    },
+    alertMore: {
+        marginTop: '8px',
+        fontStyle: 'italic',
+        color: '#975a16'
     }
 };
 
