@@ -19,7 +19,6 @@ const AdminTable = ({ cases, loading, onDetailInfo, onRefresh }) => {
         }
     };
 
-
     const handleMarkerCase = async (caseData) => {
         try {
             await api.get(`/case/marker/${caseData.id}`);
@@ -39,63 +38,82 @@ const AdminTable = ({ cases, loading, onDetailInfo, onRefresh }) => {
 
     const columns = useMemo(() => [
         {
-            accessorKey: 'nomerOfCase',
-            header: '№ дела',
-            cell: info => {
-                const status = getCaseStatus(info.row.original.dateOfResult, info.row.original.isMarkeredByAdmin, info.row.original.isUnMarkeredByAdmin);
-                return (
-                    <div style={{
-                        fontWeight: '600',
-                        color: '#1a365d',
-                        display: 'flex',
-                        alignItems: 'center'
-                    }}>
-                        {status && <StatusIcon status={status.status} />}
-                        {info.getValue()}
-                    </div>
-                );
-            },
-            size: 150,
-        },
-        {
-            accessorKey: 'nameOfCurt',
-            header: 'Наименование суда',
-            cell: info => info.getValue(),
-            size: 200,
+            id: 'case',
+            header: () => <div style={{ textAlign: 'center', width: '100%' }}>ДЕЛО</div>,
+            columns: [
+                {
+                    accessorKey: 'nomerOfCase',
+                    header: '№ дела',
+                    cell: info => {
+                        const status = getCaseStatus(info.row.original.dateOfResult, info.row.original.isMarkeredByAdmin, info.row.original.isUnMarkeredByAdmin);
+                        return (
+                            <div style={{
+                                fontWeight: '600',
+                                color: '#1a365d',
+                                display: 'flex',
+                                alignItems: 'center'
+                            }}>
+                                {status && <StatusIcon status={status.status} />}
+                                {info.getValue()}
+                            </div>
+                        );
+                    },
+                    size: 150,
+                },
+                {
+                    accessorKey: 'nameOfCurt',
+                    header: 'Наименование суда',
+                    cell: info => info.getValue(),
+                    size: 150,
+                },
+            ],
         },
         {
             id: 'parties',
-            header: 'Стороны по делу',
-            cell: info => (
-                <div>
-                    <div style={{ fontSize: '12px', color: '#2d3748' }}>
-                        <strong>Истец:</strong> {info.row.original.applicant}
-                    </div>
-                    <div style={{ fontSize: '12px', color: '#2d3748' }}>
-                        <strong>Ответчик:</strong> {info.row.original.defendant}
-                    </div>
-                </div>
-            ),
-            size: 250,
-        },
-        {
-            accessorKey: 'reason',
-            header: 'Предмет иска',
-            cell: info => (
-                <div style={{
-                    maxWidth: '200px',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap'
-                }}>
-                    {info.getValue()}
-                </div>
-            ),
-            size: 200,
+            header: () => <div style={{ textAlign: 'center', width: '100%' }}>Стороны по делу</div>,
+            columns: [
+                {
+                    accessorKey: 'applicant',
+                    header: 'Истец',
+                    cell: info => (
+                        <div style={{ fontSize: '12px', color: '#2d3748' }}>
+                            {info.getValue()}
+                        </div>
+                    ),
+                    size: 180,
+                },
+                {
+                    accessorKey: 'defendant',
+                    header: 'Ответчик',
+                    cell: info => (
+                        <div style={{ fontSize: '12px', color: '#2d3748' }}>
+                            {info.getValue()}
+                        </div>
+                    ),
+                    size: 180,
+                },
+                {
+                    accessorKey: 'reason',
+                    header: 'Предмет иска',
+                    cell: info => (
+                        <div style={{
+                            maxWidth: '200px',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap',
+                            fontSize: '12px'
+                        }}>
+                            {info.getValue()}
+                        </div>
+                    ),
+                    size: 200,
+                },
+            ],
         },
         {
             accessorKey: 'dateOfCurt',
             header: 'Судебное заседание',
+
             cell: info => {
                 const date = info.getValue();
                 return date ? (
@@ -114,67 +132,53 @@ const AdminTable = ({ cases, loading, onDetailInfo, onRefresh }) => {
             header: 'Решение суда',
             cell: info => {
                 const result = info.getValue();
-                const dateOfResult = info.row.original.dateOfResult;
-                const status = getCaseStatus(dateOfResult, info.row.original.isMarkeredByAdmin, info.row.original.isUnMarkeredByAdmin);
-
                 return result ? (
-                    <div>
-                        <div style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '4px',
-                            marginBottom: '2px'
-                        }}>
-                            <FileText size={14} color="#4a5568" />
-                            <span style={{ fontSize: '12px' }}>{result}</span>
-                        </div>
-                        {dateOfResult && (
-                            <div style={{
-                                fontSize: '11px',
-                                color: status ? '#2d3748' : '#718096',
-                                fontWeight: status ? '600' : 'normal'
-                            }}>
-                                {new Date(dateOfResult).toLocaleDateString('ru-RU')}
-                                {status && (
-                                    <div style={{
-                                        fontSize: '10px',
-                                        color: status.status === 'critical' ? '#e53e3e' :
-                                            status.status === 'warning' ? '#dd6b20' : '#3182ce',
-                                        marginTop: '2px'
-                                    }}>
-                                        {status.message}
-                                    </div>
-                                )}
-                            </div>
-                        )}
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '4px'
+                    }}>
+                        <FileText size={14} color="#4a5568" />
+                        <span style={{ fontSize: '12px' }}>{result}</span>
                     </div>
                 ) : (
                     <span style={{ color: '#a0aec0', fontStyle: 'italic' }}>Нет решения</span>
                 );
             },
-            size: 220,
+            size: 180,
         },
         {
-            id: 'instances',
-            header: 'Заседания',
+            accessorKey: 'dateOfResult',
+            header: 'Дата решения',
             cell: info => {
-                const instances = info.row.original.curtInstances || [];
-                return (
-                    <div style={{ textAlign: 'center' }}>
-                        <span style={{
-                            backgroundColor: instances.length > 0 ? '#e6fffa' : '#fed7d7',
-                            color: instances.length > 0 ? '#234e52' : '#742a2a',
-                            padding: '2px 8px',
-                            borderRadius: '12px',
+                const date = info.getValue();
+                const status = getCaseStatus(date, info.row.original.isMarkeredByAdmin, info.row.original.isUnMarkeredByAdmin);
+
+                return date ? (
+                    <div>
+                        <div style={{
                             fontSize: '12px',
-                            fontWeight: '500'
+                            color: '#2d3748',
+                            marginBottom: '2px'
                         }}>
-                            {instances.length}
-                        </span>
+                            {new Date(date).toLocaleDateString('ru-RU')}
+                        </div>
+                        {status && (
+                            <div style={{
+                                fontSize: '10px',
+                                color: status.status === 'critical' ? '#e53e3e' :
+                                    status.status === 'warning' ? '#dd6b20' : '#3182ce',
+                                marginTop: '2px'
+                            }}>
+                                {status.message}
+                            </div>
+                        )}
                     </div>
+                ) : (
+                    <span style={{ color: '#a0aec0', fontStyle: 'italic' }}>Нет даты</span>
                 );
             },
-            size: 100,
+            size: 140,
         },
         // НОВАЯ КОЛОНКА С КНОПКОЙ
         {
@@ -329,7 +333,6 @@ const AdminTable = ({ cases, loading, onDetailInfo, onRefresh }) => {
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                         <div style={{ width: '12px', height: '12px', backgroundColor: '#fed7d7', border: '1px solid #e53e3e' }}></div>
-                        <span>Более 30 дней</span>
                     </div>
                 </div>
 
@@ -342,6 +345,7 @@ const AdminTable = ({ cases, loading, onDetailInfo, onRefresh }) => {
                                     {headerGroup.headers.map(header => (
                                         <th
                                             key={header.id}
+                                            colSpan={header.colSpan}
                                             style={{
                                                 padding: '12px 16px',
                                                 textAlign: 'left',
@@ -353,25 +357,28 @@ const AdminTable = ({ cases, loading, onDetailInfo, onRefresh }) => {
                                                 cursor: header.column.getCanSort() ? 'pointer' : 'default',
                                                 userSelect: 'none',
                                                 width: header.getSize(),
+                                                borderRight: '1px solid #e2e8f0'
                                             }}
                                             onClick={header.column.getToggleSortingHandler()}
                                         >
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                                                {flexRender(header.column.columnDef.header, header.getContext())}
-                                                {header.column.getCanSort() && (
-                                                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                                        <ChevronUp
-                                                            size={12}
-                                                            color={header.column.getIsSorted() === 'asc' ? '#2d3748' : '#cbd5e0'}
-                                                        />
-                                                        <ChevronDown
-                                                            size={12}
-                                                            color={header.column.getIsSorted() === 'desc' ? '#2d3748' : '#cbd5e0'}
-                                                            style={{ marginTop: '-4px' }}
-                                                        />
-                                                    </div>
-                                                )}
-                                            </div>
+                                            {header.isPlaceholder ? null : (
+                                                <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                                    {flexRender(header.column.columnDef.header, header.getContext())}
+                                                    {header.column.getCanSort() && (
+                                                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                            <ChevronUp
+                                                                size={12}
+                                                                color={header.column.getIsSorted() === 'asc' ? '#2d3748' : '#cbd5e0'}
+                                                            />
+                                                            <ChevronDown
+                                                                size={12}
+                                                                color={header.column.getIsSorted() === 'desc' ? '#2d3748' : '#cbd5e0'}
+                                                                style={{ marginTop: '-4px' }}
+                                                            />
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
                                         </th>
                                     ))}
                                 </tr>
@@ -418,7 +425,8 @@ const AdminTable = ({ cases, loading, onDetailInfo, onRefresh }) => {
                                                     padding: '16px',
                                                     fontSize: '14px',
                                                     color: '#2d3748',
-                                                    borderBottom: '1px solid #f1f5f9'
+                                                    borderBottom: '1px solid #f1f5f9',
+                                                    borderRight: '1px solid #f1f5f9'
                                                 }}
                                             >
                                                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -484,10 +492,9 @@ const AdminTable = ({ cases, loading, onDetailInfo, onRefresh }) => {
                         </button>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     );
 };
 
 export default AdminTable;
-

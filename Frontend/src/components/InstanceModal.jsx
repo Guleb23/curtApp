@@ -127,7 +127,7 @@ const InstanceModal = ({
                     paddingBottom: '15px'
                 }}>
                     <h3 style={{ margin: 0, color: '#333' }}>
-                        {isEditing ? 'Редактировать заседание' : 'Добавить судебное заседание'}
+                        {isEditing ? 'Редактировать инстанцию' : 'Добавить судебную инстанцию'}
                     </h3>
                     <button
                         onClick={handleClose}
@@ -152,25 +152,23 @@ const InstanceModal = ({
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <div>
                         <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold', fontSize: '14px' }}>
-                            Название заседания *
+                            Тип
                         </label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
+                        <select placeholder="Инстанция или верховный суд"
+                            name='name'
                             onChange={handleChange}
-                            required
                             style={{
                                 width: '100%',
                                 padding: '8px',
                                 border: '1px solid #ddd',
                                 borderRadius: '4px',
                                 fontSize: '14px'
-                            }}
-                            placeholder="Предварительное заседание"
-                        />
+                            }}>
+                            <option value="Инстанция">Выберите инстанцию</option>
+                            <option value="Инстанция">Инстанция</option>
+                            <option value="Верховный суд">Верховный суд</option>
+                        </select>
                     </div>
-
                     <div>
                         <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold', fontSize: '14px' }}>
                             Название суда
@@ -273,7 +271,7 @@ const InstanceModal = ({
 
                     <div>
                         <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold', fontSize: '14px' }}>
-                            Результат заседания
+                            Результат
                         </label>
                         <input
                             type="text"

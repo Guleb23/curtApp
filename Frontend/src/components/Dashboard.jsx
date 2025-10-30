@@ -252,7 +252,7 @@ const Dashboard = () => {
                         <ul style={styles.alertList}>
                             {expiredCases.slice(0, 5).map((caseItem, index) => (
                                 <li key={caseItem.id} style={styles.alertListItem}>
-                                    <strong>Дело №{caseItem.nomerOfCase}</strong> - {caseItem.applicant} vs {caseItem.defendant}
+                                    <strong>Дело №{caseItem.nomerOfCase}</strong> - (Истец)-{caseItem.applicant} и (Ответчик)-{caseItem.defendant}
                                     {caseItem.dateOfResult && (
                                         <span style={styles.alertDate}>
                                             (Решение: {new Date(caseItem.dateOfResult).toLocaleDateString('ru-RU')})

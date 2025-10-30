@@ -47,9 +47,7 @@ const InfoAboutCase = ({ isOpen, onClose, caseData }) => {
                             <div style={modalStyles.infoItem}>
                                 <strong>Номер дела:</strong> {caseData.nomerOfCase}
                             </div>
-                            <div style={modalStyles.infoItem}>
-                                <strong>Предмет иска:</strong> {caseData.reason}
-                            </div>
+
                         </div>
                     </div>
 
@@ -65,6 +63,9 @@ const InfoAboutCase = ({ isOpen, onClose, caseData }) => {
                             </div>
                             <div style={modalStyles.infoItem}>
                                 <strong>Ответчик:</strong> {caseData.defendant}
+                            </div>
+                            <div style={modalStyles.infoItem}>
+                                <strong>Предмет иска:</strong> {caseData.reason}
                             </div>
                         </div>
                     </div>
@@ -96,22 +97,17 @@ const InfoAboutCase = ({ isOpen, onClose, caseData }) => {
                         <div style={modalStyles.section}>
                             <h3 style={modalStyles.sectionTitle}>
                                 <Clock size={16} style={{ marginRight: '8px' }} />
-                                Заседания ({caseData.curtInstances.length})
+                                Инстанции ({caseData.curtInstances.length})
                             </h3>
                             <div style={modalStyles.instancesList}>
                                 {caseData.curtInstances.map((instance, index) => (
                                     <div key={instance.id} style={modalStyles.instanceItem}>
                                         <div style={modalStyles.instanceHeader}>
                                             <span style={modalStyles.instanceNumber}>
-                                                Заседание {index + 1}
+                                                {instance.name == "Верховный суд" ? "" : index + 1} {instance.name}
                                             </span>
                                         </div>
                                         <div style={modalStyles.instanceDetails}>
-                                            {instance.name && (
-                                                <div style={modalStyles.instanceField}>
-                                                    <strong>Название:</strong> {instance.name}
-                                                </div>
-                                            )}
                                             {instance.nameOfCurt && (
                                                 <div style={modalStyles.instanceField}>
                                                     <strong>Суд:</strong> {instance.nameOfCurt}

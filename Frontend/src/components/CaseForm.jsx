@@ -145,7 +145,7 @@ const CaseForm = ({
                     );
                     await Promise.all(instancePromises);
                 }
-                setMessage('✅ Дело и заседания успешно созданы!');
+                setMessage('✅ Дело и инстанции успешно созданы!');
             }
 
             setTimeout(() => {
@@ -401,7 +401,7 @@ const CaseForm = ({
                         <div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
                                 <label style={{ fontWeight: 'bold', fontSize: '14px' }}>
-                                    Судебные заседания
+                                    Судебные инстанции
                                 </label>
                                 <button
                                     type="button"
@@ -416,7 +416,7 @@ const CaseForm = ({
                                         fontSize: '12px'
                                     }}
                                 >
-                                    ＋ Добавить заседание
+                                    ＋ Добавить инстанцию
                                 </button>
                             </div>
 
@@ -486,7 +486,7 @@ const CaseForm = ({
                                     textAlign: 'center',
                                     color: '#6c757d'
                                 }}>
-                                    Заседания не добавлены
+                                    Инстанции не добавлены
                                 </div>
                             )}
                         </div>
