@@ -1,19 +1,71 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\controllers\\casecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\controllers\\casecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 150,
-          "SelectedChildIndex": -1,
+          "DockedHeight": 250,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CaseController.cs",
+              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Controllers\\CaseController.cs",
+              "RelativeDocumentMoniker": "ApiForSud\\Controllers\\CaseController.cs",
+              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Controllers\\CaseController.cs",
+              "RelativeToolTip": "ApiForSud\\Controllers\\CaseController.cs",
+              "ViewState": "AgIAAH0AAAAAAAAAAAAuwIYAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T04:50:10.536Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Program.cs",
+              "RelativeDocumentMoniker": "ApiForSud\\Program.cs",
+              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Program.cs",
+              "RelativeToolTip": "ApiForSud\\Program.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAuwE8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T04:49:07.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\appsettings.json",
+              "RelativeDocumentMoniker": "ApiForSud\\appsettings.json",
+              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\appsettings.json",
+              "RelativeToolTip": "ApiForSud\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-30T04:48:59.336Z",
+              "EditorCaption": ""
             }
           ]
         }

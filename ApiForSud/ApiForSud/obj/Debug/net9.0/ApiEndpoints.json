@@ -228,6 +228,58 @@
   },
   {
     "ContainingType": "ApiForSud.Controllers.CaseController",
+    "Method": "MarkerCase",
+    "RelativePath": "api/Case/marker/{caseId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "caseId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiForSud.Controllers.CaseController",
+    "Method": "UnMarkerCase",
+    "RelativePath": "api/Case/unmarker/{caseId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "caseId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ApiForSud.Controllers.CaseController",
     "Method": "GetCasesById",
     "RelativePath": "api/Case/usercases",
     "HttpMethod": "GET",

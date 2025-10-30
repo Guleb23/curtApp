@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cb0crAREsek=",
+  "dgSpecHash": "oPQoQZh9d20=",
   "success": true,
   "projectFilePath": "C:\\Users\\юзер\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\ApiForSud.csproj",
   "expectedPackageFiles": [
@@ -57,7 +57,8 @@
     "C:\\Users\\юзер\\.nuget\\packages\\system.reflection.metadata\\7.0.0\\system.reflection.metadata.7.0.0.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\юзер\\.nuget\\packages\\system.text.json\\9.0.10\\system.text.json.9.0.10.nupkg.sha512",
-    "C:\\Users\\юзер\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512"
+    "C:\\Users\\юзер\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
+    "C:\\Users\\юзер\\.nuget\\packages\\microsoft.net.sdk.compilers.toolset\\9.0.306\\microsoft.net.sdk.compilers.toolset.9.0.306.nupkg.sha512"
   ],
   "logs": []
 }

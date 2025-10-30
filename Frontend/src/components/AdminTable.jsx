@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
     flexRender,
     getCoreRowModel,
@@ -9,22 +9,40 @@ import {
 import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Calendar, FileText, AlertTriangle } from 'lucide-react';
 import { getCaseStatus, getStatusStyles } from '../utils/getCaseStatus';
 import StatusIcon from './StatusIcon';
+import api from '../services/authService';
 
-const AdminTable = ({ cases, loading, onDetailInfo }) => {
+const AdminTable = ({ cases, loading, onDetailInfo, onRefresh }) => {
     const [detailLoading, setDetailLoading] = useState(false);
-
     const handleGetCase = (caseData) => {
         if (onDetailInfo) {
             onDetailInfo(caseData);
         }
     };
 
+
+    const handleMarkerCase = async (caseData) => {
+        try {
+            await api.get(`/case/marker/${caseData.id}`);
+        } catch (error) {
+            console.error(`❌ Ошибка при дела:`, error);
+        }
+    };
+
+    const handleUnMarkerCase = async (caseData) => {
+        try {
+            await api.get(`/case/unmarker/${caseData.id}`);
+
+        } catch (error) {
+            console.error(`❌ Ошибка при дела:`, error);
+        }
+    }
+
     const columns = useMemo(() => [
         {
             accessorKey: 'nomerOfCase',
             header: '№ дела',
             cell: info => {
-                const status = getCaseStatus(info.row.original.dateOfResult);
+                const status = getCaseStatus(info.row.original.dateOfResult, info.row.original.isMarkeredByAdmin, info.row.original.isUnMarkeredByAdmin);
                 return (
                     <div style={{
                         fontWeight: '600',
@@ -97,7 +115,7 @@ const AdminTable = ({ cases, loading, onDetailInfo }) => {
             cell: info => {
                 const result = info.getValue();
                 const dateOfResult = info.row.original.dateOfResult;
-                const status = getCaseStatus(dateOfResult);
+                const status = getCaseStatus(dateOfResult, info.row.original.isMarkeredByAdmin, info.row.original.isUnMarkeredByAdmin);
 
                 return result ? (
                     <div>
@@ -158,6 +176,72 @@ const AdminTable = ({ cases, loading, onDetailInfo }) => {
             },
             size: 100,
         },
+        // НОВАЯ КОЛОНКА С КНОПКОЙ
+        {
+            id: 'actions',
+            header: 'Действия',
+            cell: info => {
+                const caseData = info.row.original;
+                const isMarked = caseData.isMarkeredByAdmin;
+
+                const handleMarkCase = async () => {
+                    try {
+                        console.log('Пометить дело:', caseData);
+                        await handleMarkerCase(caseData);
+                        // Даем небольшой таймаут для гарантии обновления данных на сервере
+                        setTimeout(() => {
+                            onRefresh();
+                        }, 500);
+                    } catch (error) {
+                        console.error('Ошибка при пометке:', error);
+                    }
+                };
+
+                const handleUnmarkCase = async () => {
+                    try {
+                        console.log('Снять пометку с дела:', caseData);
+                        await handleUnMarkerCase(caseData);
+                        setTimeout(() => {
+                            onRefresh();
+                        }, 500);
+                    } catch (error) {
+                        console.error('Ошибка при снятии пометки:', error);
+                    }
+                };
+
+                return (
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            if (isMarked) {
+                                handleUnmarkCase();
+                            } else {
+                                handleMarkCase();
+                            }
+                        }}
+                        style={{
+                            padding: '6px 12px',
+                            backgroundColor: isMarked ? '#e53e3e' : '#3182ce',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            fontSize: '12px',
+                            cursor: 'pointer',
+                            transition: 'background-color 0.2s'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.target.style.backgroundColor = isMarked ? '#c53030' : '#2c5aa0';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.target.style.backgroundColor = isMarked ? '#e53e3e' : '#3182ce';
+                        }}
+                    >
+                        {isMarked ? 'Снять пометку' : 'Пометить'}
+                    </button>
+                );
+            },
+            size: 140,
+        }
     ], []);
 
     const table = useReactTable({
@@ -295,7 +379,11 @@ const AdminTable = ({ cases, loading, onDetailInfo }) => {
                         </thead>
                         <tbody>
                             {table.getRowModel().rows.map(row => {
-                                const status = getCaseStatus(row.original.dateOfResult);
+                                const status = getCaseStatus(
+                                    row.original.dateOfResult,
+                                    row.original.isMarkeredByAdmin,
+                                    row.original.isUnMarkeredByAdmin
+                                );
                                 const rowStyles = status ? getStatusStyles(status.status) : {};
 
                                 return (

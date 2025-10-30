@@ -40,7 +40,7 @@ const CasesTable = ({ cases, loading, fetchUserCases, onEditCase }) => {
             accessorKey: 'nomerOfCase',
             header: '№ дела',
             cell: info => {
-                const status = getCaseStatus(info.row.original.dateOfResult);
+                const status = getCaseStatus(info.row.original.dateOfResult, info.row.original.isMarkeredByAdmin, info.row.original.isUnMarkeredByAdmin);
                 return (
                     <div style={{
                         fontWeight: '600',
@@ -113,7 +113,7 @@ const CasesTable = ({ cases, loading, fetchUserCases, onEditCase }) => {
             cell: info => {
                 const result = info.getValue();
                 const dateOfResult = info.row.original.dateOfResult;
-                const status = getCaseStatus(dateOfResult);
+                const status = getCaseStatus(info.row.original.dateOfResult, info.row.original.isMarkeredByAdmin, info.row.original.isUnMarkeredByAdmin);
 
                 return result ? (
                     <div>
@@ -337,7 +337,7 @@ const CasesTable = ({ cases, loading, fetchUserCases, onEditCase }) => {
                     </thead>
                     <tbody>
                         {table.getRowModel().rows.map(row => {
-                            const status = getCaseStatus(row.original.dateOfResult);
+                            const status = getCaseStatus(row.original.dateOfResult, row.original.isMarkeredByAdmin, row.original.isUnMarkeredByAdmin);
                             const rowStyles = status ? getStatusStyles(status.status) : {};
 
                             return (

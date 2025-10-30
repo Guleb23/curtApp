@@ -1,10 +1,18 @@
-export const getCaseStatus = (dateOfResult) => {
+export const getCaseStatus = (dateOfResult, isMarkerdedByAdmin, isUnMarkeredByAdmin) => {
     if (!dateOfResult) return null;
 
+    // Вычисляем diffDays в начале функции
     const resultDate = new Date(dateOfResult);
     const today = new Date();
     const diffTime = today - resultDate;
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+    if (isMarkerdedByAdmin) {
+        return { status: 'critical', days: diffDays, message: `Прошло ${diffDays} дней с даты решения` };
+    }
+    if (isUnMarkeredByAdmin) {
+        return null;
+    }
 
     if (diffDays > 30) {
         return { status: 'critical', days: diffDays, message: `Прошло ${diffDays} дней с даты решения` };

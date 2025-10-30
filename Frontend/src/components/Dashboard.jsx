@@ -85,6 +85,7 @@ const Dashboard = () => {
             console.log('Fetching from endpoint:', endpoint);
             const response = await api.get(endpoint);
             const casesData = response.data;
+            console.log(casesData);
             setCases(casesData);
             setFilteredCases(casesData);
             checkExpiredCases(casesData);

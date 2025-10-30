@@ -278,3 +278,4 @@ C:\Users\юзер\Desktop\curtProject\ApiForSud\ApiForSud\obj\Debug\net9.0\refin
 C:\Users\юзер\Desktop\curtProject\ApiForSud\ApiForSud\obj\Debug\net9.0\ApiForSud.pdb
 C:\Users\юзер\Desktop\curtProject\ApiForSud\ApiForSud\obj\Debug\net9.0\ApiForSud.genruntimeconfig.cache
 C:\Users\юзер\Desktop\curtProject\ApiForSud\ApiForSud\obj\Debug\net9.0\ref\ApiForSud.dll
+C:\Users\юзер\Desktop\curtProject\ApiForSud\ApiForSud\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

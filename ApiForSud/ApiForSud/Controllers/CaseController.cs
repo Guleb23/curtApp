@@ -132,7 +132,7 @@ namespace ApiForSud.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPost("marker/[caseId]")]
+        [HttpGet("marker/{caseId}")]
         public async Task<ActionResult<bool>> MarkerCase(Guid caseId)
         {
             if(caseId == null)
@@ -147,7 +147,7 @@ namespace ApiForSud.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPost("unmarker/[caseId]")]
+        [HttpGet("unmarker/{caseId}")]
         public async Task<ActionResult<bool>> UnMarkerCase(Guid caseId)
         {
             if (caseId == null)
