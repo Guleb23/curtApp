@@ -37,6 +37,7 @@ namespace ApiForSud.Services.AuthService
                     Id = Guid.NewGuid(),
                     Login = userDTO.Login,
                     PasswordHash = _passwordService.HashPassword(userDTO.Password),
+                    Email = userDTO.Email,
                     RoleId = 1
                 };
                 _context.Users.Add(user);

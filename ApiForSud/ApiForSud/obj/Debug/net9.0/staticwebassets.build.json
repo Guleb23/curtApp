@@ -1,12 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "QrOMY/bfriy3CCjf17vQXHM1kgkKdWKDsgxWGVmqUHw=",
-  "Source": "ApiForSud",
-  "BasePath": "_content/ApiForSud",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
-}
+{"Version":1,"Hash":"QrOMY/bfriy3CCjf17vQXHM1kgkKdWKDsgxWGVmqUHw=","Source":"ApiForSud","BasePath":"_content/ApiForSud","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

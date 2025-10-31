@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 const Register = () => {
     const [userData, setUserData] = useState({
         login: '',
+        email: '',
         password: '',
         confirmPassword: ''
     });
@@ -57,7 +58,8 @@ const Register = () => {
 
         const result = await register({
             login: userData.login,
-            password: userData.password
+            password: userData.password,
+            email: userData.email
         });
 
         if (result.success) {
@@ -118,6 +120,25 @@ const Register = () => {
             </h2>
 
             <form onSubmit={handleSubmit}>
+                <div style={{ marginBottom: '20px' }}>
+                    <label style={{
+                        display: 'block',
+                        marginBottom: '5px',
+                        fontWeight: '500',
+                        color: '#4a5568'
+                    }}>
+                        Email *
+                    </label>
+                    <input
+                        type="text"
+                        name="email"
+                        placeholder="Введите вашу почту"
+                        value={userData.email}
+                        onChange={handleChange}
+                        style={getInputStyle('login')}
+                        disabled={loading}
+                    />
+                </div>
                 {/* Поле логина */}
                 <div style={{ marginBottom: '20px' }}>
                     <label style={{
