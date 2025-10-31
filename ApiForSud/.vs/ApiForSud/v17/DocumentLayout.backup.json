@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\services\\authservice\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\services\\authservice\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -58,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 250,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,26 +66,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "ApiForSud\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Controllers\\AuthController.cs",
               "RelativeToolTip": "ApiForSud\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAnwBgAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAnwDIAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T10:52:26.803Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-31T10:52:26.803Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "AuthService.cs",
               "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Services\\AuthService\\AuthService.cs",
               "RelativeDocumentMoniker": "ApiForSud\\Services\\AuthService\\AuthService.cs",
               "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Services\\AuthService\\AuthService.cs",
               "RelativeToolTip": "ApiForSud\\Services\\AuthService\\AuthService.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAewDMAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-31T10:45:29.064Z",
               "EditorCaption": ""
@@ -124,8 +123,7 @@
               "RelativeToolTip": "ApiForSud\\Models\\DatabaseModels\\User.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAIA9wBEAAABDAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T10:13:10.538Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-31T10:13:10.538Z"
             },
             {
               "$type": "Document",
@@ -197,8 +195,7 @@
               "RelativeToolTip": "ApiForSud\\Program.cs",
               "ViewState": "AgIAADMAAAAAAAAAAIAwwEEAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T04:49:07.004Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-30T04:49:07.004Z"
             },
             {
               "$type": "Document",

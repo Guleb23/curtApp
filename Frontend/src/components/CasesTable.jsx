@@ -10,6 +10,7 @@ import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Calendar, FileText }
 import api from '../services/authService';
 import StatusIcon from './StatusIcon';
 import { getCaseStatus, getStatusStyles } from '../utils/getCaseStatus';
+
 const CasesTable = ({ cases, loading, fetchUserCases, onEditCase }) => {
     const [selectedCase, setSelectedCase] = useState(null);
 
@@ -34,6 +35,7 @@ const CasesTable = ({ cases, loading, fetchUserCases, onEditCase }) => {
         }
     };
 
+
     // Колонки таблицы с добавленными статусами
     const columns = useMemo(() => [
         {
@@ -53,7 +55,7 @@ const CasesTable = ({ cases, loading, fetchUserCases, onEditCase }) => {
                     </div>
                 );
             },
-            size: 150,
+            size: 200,
         },
         {
             accessorKey: 'nameOfCurt',
@@ -62,19 +64,24 @@ const CasesTable = ({ cases, loading, fetchUserCases, onEditCase }) => {
             size: 200,
         },
         {
-            id: 'parties',
-            header: 'Стороны по делу',
+            accessorKey: 'applicant',
+            header: 'Истец',
             cell: info => (
-                <div>
-                    <div style={{ fontSize: '12px', color: '#2d3748' }}>
-                        <strong>Истец:</strong> {info.row.original.applicant}
-                    </div>
-                    <div style={{ fontSize: '12px', color: '#2d3748' }}>
-                        <strong>Ответчик:</strong> {info.row.original.defendant}
-                    </div>
+                <div style={{ fontSize: '12px', color: '#2d3748' }}>
+                    {info.getValue()}
                 </div>
             ),
-            size: 250,
+            size: 200,
+        },
+        {
+            accessorKey: 'defendant',
+            header: 'Ответчик',
+            cell: info => (
+                <div style={{ fontSize: '12px', color: '#2d3748' }}>
+                    {info.getValue()}
+                </div>
+            ),
+            size: 200,
         },
         {
             accessorKey: 'reason',
@@ -84,7 +91,9 @@ const CasesTable = ({ cases, loading, fetchUserCases, onEditCase }) => {
                     maxWidth: '200px',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
-                    whiteSpace: 'nowrap'
+                    whiteSpace: 'nowrap',
+                    fontSize: '12px',
+                    color: '#2d3748'
                 }}>
                     {info.getValue()}
                 </div>
@@ -112,39 +121,14 @@ const CasesTable = ({ cases, loading, fetchUserCases, onEditCase }) => {
             header: 'Решение суда',
             cell: info => {
                 const result = info.getValue();
-                const dateOfResult = info.row.original.dateOfResult;
-                const status = getCaseStatus(info.row.original.dateOfResult, info.row.original.isMarkeredByAdmin, info.row.original.isUnMarkeredByAdmin);
-
                 return result ? (
-                    <div>
-                        <div style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '4px',
-                            marginBottom: '2px'
-                        }}>
-                            <FileText size={14} color="#4a5568" />
-                            <span style={{ fontSize: '12px' }}>{result}</span>
-                        </div>
-                        {dateOfResult && (
-                            <div style={{
-                                fontSize: '11px',
-                                color: status ? '#2d3748' : '#718096',
-                                fontWeight: status ? '600' : 'normal'
-                            }}>
-                                {new Date(dateOfResult).toLocaleDateString('ru-RU')}
-                                {status && (
-                                    <div style={{
-                                        fontSize: '10px',
-                                        color: status.status === 'critical' ? '#e53e3e' :
-                                            status.status === 'warning' ? '#dd6b20' : '#3182ce',
-                                        marginTop: '2px'
-                                    }}>
-                                        {status.message}
-                                    </div>
-                                )}
-                            </div>
-                        )}
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '4px'
+                    }}>
+                        <FileText size={14} color="#4a5568" />
+                        <span style={{ fontSize: '12px' }}>{result}</span>
                     </div>
                 ) : (
                     <span style={{ color: '#a0aec0', fontStyle: 'italic' }}>Нет решения</span>
@@ -153,26 +137,37 @@ const CasesTable = ({ cases, loading, fetchUserCases, onEditCase }) => {
             size: 220,
         },
         {
-            id: 'instances',
-            header: 'Заседания',
+            accessorKey: 'dateOfResult',
+            header: 'Дата решения',
             cell: info => {
-                const instances = info.row.original.curtInstances || [];
-                return (
-                    <div style={{ textAlign: 'center' }}>
-                        <span style={{
-                            backgroundColor: instances.length > 0 ? '#e6fffa' : '#fed7d7',
-                            color: instances.length > 0 ? '#234e52' : '#742a2a',
-                            padding: '2px 8px',
-                            borderRadius: '12px',
+                const dateOfResult = info.getValue();
+                const status = getCaseStatus(info.row.original.dateOfResult, info.row.original.isMarkeredByAdmin, info.row.original.isUnMarkeredByAdmin);
+
+                return dateOfResult ? (
+                    <div>
+                        <div style={{
                             fontSize: '12px',
-                            fontWeight: '500'
+                            color: status ? '#2d3748' : '#718096',
+                            fontWeight: status ? '600' : 'normal'
                         }}>
-                            {instances.length}
-                        </span>
+                            {new Date(dateOfResult).toLocaleDateString('ru-RU')}
+                        </div>
+                        {status && (
+                            <div style={{
+                                fontSize: '10px',
+                                color: status.status === 'critical' ? '#e53e3e' :
+                                    status.status === 'warning' ? '#dd6b20' : '#3182ce',
+                                marginTop: '2px'
+                            }}>
+                                {status.message}
+                            </div>
+                        )}
                     </div>
+                ) : (
+                    <span style={{ color: '#a0aec0', fontStyle: 'italic' }}>Нет даты</span>
                 );
             },
-            size: 100,
+            size: 150,
         },
         {
             id: 'actions',
@@ -293,45 +288,57 @@ const CasesTable = ({ cases, loading, fetchUserCases, onEditCase }) => {
 
             {/* Таблица */}
             <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #e2e8f0' }}>
                     <thead>
                         {table.getHeaderGroups().map(headerGroup => (
-                            <tr key={headerGroup.id} style={{ backgroundColor: '#f7fafc', borderBottom: '1px solid #e2e8f0' }}>
-                                {headerGroup.headers.map(header => (
-                                    <th
-                                        key={header.id}
-                                        style={{
-                                            padding: '12px 16px',
-                                            textAlign: 'left',
-                                            fontWeight: '600',
-                                            fontSize: '12px',
-                                            textTransform: 'uppercase',
-                                            color: '#4a5568',
-                                            letterSpacing: '0.05em',
-                                            cursor: header.column.getCanSort() ? 'pointer' : 'default',
-                                            userSelect: 'none',
-                                            width: header.getSize(),
-                                        }}
-                                        onClick={header.column.getToggleSortingHandler()}
-                                    >
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                                            {flexRender(header.column.columnDef.header, header.getContext())}
-                                            {header.column.getCanSort() && (
-                                                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                                    <ChevronUp
-                                                        size={12}
-                                                        color={header.column.getIsSorted() === 'asc' ? '#2d3748' : '#cbd5e0'}
-                                                    />
-                                                    <ChevronDown
-                                                        size={12}
-                                                        color={header.column.getIsSorted() === 'desc' ? '#2d3748' : '#cbd5e0'}
-                                                        style={{ marginTop: '-4px' }}
-                                                    />
-                                                </div>
-                                            )}
-                                        </div>
-                                    </th>
-                                ))}
+                            <tr key={headerGroup.id} style={{
+                                backgroundColor: '#f7fafc',
+                                borderBottom: '1px solid #e2e8f0'
+                            }}>
+                                {headerGroup.headers.map(header => {
+                                    // Пропускаем отрисовку групповых заголовков для обычных колонок
+                                    if (header.depth > 0 && !header.column.columnDef.header) {
+                                        return null;
+                                    }
+                                    return (
+                                        <th
+                                            key={header.id}
+                                            colSpan={header.colSpan}
+                                            style={{
+                                                padding: '12px 16px',
+                                                textAlign: 'left',
+                                                fontWeight: '600',
+                                                fontSize: '12px',
+                                                textTransform: 'uppercase',
+                                                color: '#4a5568',
+                                                letterSpacing: '0.05em',
+                                                cursor: header.column.getCanSort() ? 'pointer' : 'default',
+                                                userSelect: 'none',
+                                                width: header.getSize(),
+                                                border: '1px solid #e2e8f0',
+                                                borderBottom: '1px solid #e2e8f0'
+                                            }}
+                                            onClick={header.column.getToggleSortingHandler()}
+                                        >
+                                            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                                {flexRender(header.column.columnDef.header, header.getContext())}
+                                                {header.column.getCanSort() && (
+                                                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                        <ChevronUp
+                                                            size={12}
+                                                            color={header.column.getIsSorted() === 'asc' ? '#2d3748' : '#cbd5e0'}
+                                                        />
+                                                        <ChevronDown
+                                                            size={12}
+                                                            color={header.column.getIsSorted() === 'desc' ? '#2d3748' : '#cbd5e0'}
+                                                            style={{ marginTop: '-4px' }}
+                                                        />
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </th>
+                                    );
+                                })}
                             </tr>
                         ))}
                     </thead>

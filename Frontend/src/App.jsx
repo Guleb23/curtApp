@@ -23,13 +23,13 @@ function App() {
           onClick={() => setCurrentView('login')}
           style={{ marginRight: '10px', padding: '8px 16px' }}
         >
-          Login
+          Войти
         </button>
         <button
           onClick={() => setCurrentView('register')}
           style={{ padding: '8px 16px' }}
         >
-          Register
+          Регистрация
         </button>
       </nav>
 
