@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const API_URL = 'http://188.225.85.223:7080/api/auth';
+const API_URL = 'http://localhost:7080/api/auth';
 
 const api = axios.create({
-    baseURL: 'http://188.225.85.223:7080/api',
+    baseURL: 'http://localhost:7080/api',
     headers: {
         'Content-Type': 'application/json',
     },
@@ -127,13 +127,23 @@ export const authService = {
 
     // Логин
     async login(credentials) {
-        const response = await axios.post(`${API_URL}/login`, credentials);
+        try {
+            console.log('Sending login request:', credentials);
+            const response = await axios.post(`${API_URL}/login`, {
+                login: credentials.login,    // Отправляем email
+                password: credentials.password,
+                email: ""
+            });
 
-        if (response.data) {
-            tokenUtils.saveAuthData(response.data);
+            if (response.data) {
+                tokenUtils.saveAuthData(response.data);
+            }
+
+            return response.data;
+        } catch (error) {
+            console.error('Login error:', error.response?.data || error.message);
+            throw error;
         }
-
-        return response.data;
     },
 
     // Logout
