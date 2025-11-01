@@ -22,6 +22,9 @@ namespace EmailService.Services
             string login = _configuration["smtpConfig:login"]!;
             string connection = _configuration["smtpConfig:smtpConnection"]!;
 
+            Console.WriteLine($"Login: {login}");
+            Console.WriteLine($"connection: {connection}");
+            Console.WriteLine($"psw: {psw}");
             bool allSent = true;
 
             using var smtpClient = new SmtpClient();
