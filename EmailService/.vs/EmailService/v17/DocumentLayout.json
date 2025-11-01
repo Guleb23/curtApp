@@ -1,0 +1,125 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\EmailService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7612D1FC-501A-4F55-9760-F3839F30AFAB}|EmailService\\EmailService.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\emailservice\\emailservice\\services\\emailservicesender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7612D1FC-501A-4F55-9760-F3839F30AFAB}|EmailService\\EmailService.csproj|solutionrelative:emailservice\\services\\emailservicesender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7612D1FC-501A-4F55-9760-F3839F30AFAB}|EmailService\\EmailService.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\emailservice\\emailservice\\controllers\\emailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7612D1FC-501A-4F55-9760-F3839F30AFAB}|EmailService\\EmailService.csproj|solutionrelative:emailservice\\controllers\\emailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7612D1FC-501A-4F55-9760-F3839F30AFAB}|EmailService\\EmailService.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\emailservice\\emailservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7612D1FC-501A-4F55-9760-F3839F30AFAB}|EmailService\\EmailService.csproj|solutionrelative:emailservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7612D1FC-501A-4F55-9760-F3839F30AFAB}|EmailService\\EmailService.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\emailservice\\emailservice\\services\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7612D1FC-501A-4F55-9760-F3839F30AFAB}|EmailService\\EmailService.csproj|solutionrelative:emailservice\\services\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7612D1FC-501A-4F55-9760-F3839F30AFAB}|EmailService\\EmailService.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\emailservice\\emailservice\\responsedto\\userdataforemaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7612D1FC-501A-4F55-9760-F3839F30AFAB}|EmailService\\EmailService.csproj|solutionrelative:emailservice\\responsedto\\userdataforemaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7612D1FC-501A-4F55-9760-F3839F30AFAB}|EmailService\\EmailService.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\emailservice\\emailservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7612D1FC-501A-4F55-9760-F3839F30AFAB}|EmailService\\EmailService.csproj|solutionrelative:emailservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 250,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\EmailService\\EmailService\\appsettings.json",
+              "RelativeDocumentMoniker": "EmailService\\appsettings.json",
+              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\EmailService\\EmailService\\appsettings.json",
+              "RelativeToolTip": "EmailService\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-01T11:43:33.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserDataForEmailDTO.cs",
+              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\EmailService\\EmailService\\ResponseDTO\\UserDataForEmailDTO.cs",
+              "RelativeDocumentMoniker": "EmailService\\ResponseDTO\\UserDataForEmailDTO.cs",
+              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\EmailService\\EmailService\\ResponseDTO\\UserDataForEmailDTO.cs",
+              "RelativeToolTip": "EmailService\\ResponseDTO\\UserDataForEmailDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T11:37:33.357Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "EmailServiceSender.cs",
+              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\EmailService\\EmailService\\Services\\EmailServiceSender.cs",
+              "RelativeDocumentMoniker": "EmailService\\Services\\EmailServiceSender.cs",
+              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\EmailService\\EmailService\\Services\\EmailServiceSender.cs",
+              "RelativeToolTip": "EmailService\\Services\\EmailServiceSender.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAcwDoAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T10:53:30.34Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IEmailService.cs",
+              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\EmailService\\EmailService\\Services\\IEmailService.cs",
+              "RelativeDocumentMoniker": "EmailService\\Services\\IEmailService.cs",
+              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\EmailService\\EmailService\\Services\\IEmailService.cs",
+              "RelativeToolTip": "EmailService\\Services\\IEmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T10:52:38.574Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EmailController.cs",
+              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\EmailService\\EmailService\\Controllers\\EmailController.cs",
+              "RelativeDocumentMoniker": "EmailService\\Controllers\\EmailController.cs",
+              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\EmailService\\EmailService\\Controllers\\EmailController.cs",
+              "RelativeToolTip": "EmailService\\Controllers\\EmailController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAiwBoAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T10:51:18.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\EmailService\\EmailService\\Program.cs",
+              "RelativeDocumentMoniker": "EmailService\\Program.cs",
+              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\EmailService\\EmailService\\Program.cs",
+              "RelativeToolTip": "EmailService\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-30T10:49:06.148Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

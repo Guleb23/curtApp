@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BackGroundService": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

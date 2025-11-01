@@ -17,3 +17,27 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:7080
       - ASPNETCORE_ENVIRONMENT=Production
+  backgroundservice:
+    build:
+      context: ./BackGroundService/BackGroundService
+      dockerfile: Dockerfile
+    container_name: backgroundservice_c
+    depends_on:
+      - emailservice
+    environment:
+      - ApiSettings__SenderUrl=http://emailservice:5034/
+      - ConnectionStrings__DefaultConnection=Host=83.147.245.95;Port=5432;Database=default_db;Username=gen_user;Password=3wliGvdfHP#30V
+
+  emailservice:
+    build:
+      context: ./EmailService/EmailService
+      dockerfile: Dockerfile
+    container_name: emailservice_c
+    ports:
+      - "5034:5034"
+    environment:
+      - smtpConfig__login=tonovgleb@gmail.com
+      - smtpConfig__psw=eixuzelglhsgaihj
+      - smtpConfig__smtpConnection=smtp.gmail.com
+      - ASPNETCORE_URLS=http://+:5034
+      - ASPNETCORE_ENVIRONMENT=Production
