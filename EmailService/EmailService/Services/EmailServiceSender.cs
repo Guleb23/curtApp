@@ -1,6 +1,8 @@
 ﻿using EmailService.ResponseDTO;
 using MailKit.Net.Smtp;
 using MimeKit;
+using System.Net.Sockets;
+using System.Net;
 
 namespace EmailService.Services
 {
@@ -30,16 +32,11 @@ namespace EmailService.Services
             using var smtpClient = new SmtpClient();
             try
             {
-                try
-                {
-                    await smtpClient.ConnectAsync(connection, 587, MailKit.Security.SecureSocketOptions.StartTls);
-                }
-                catch (SmtpProtocolException ex)
-                {
-                    Console.WriteLine("Проблема при подключении к Gmail, попробую ещё раз через 5 секунд...");
-                    await Task.Delay(5000);
-                    await smtpClient.ConnectAsync(connection, 587, MailKit.Security.SecureSocketOptions.StartTls);
-                }
+                // Получаем IPv4 адрес сервера
+                var ipv4Address = Dns.GetHostAddresses(connection)
+                                     .First(a => a.AddressFamily == AddressFamily.InterNetwork);
+
+                await smtpClient.ConnectAsync(ipv4Address.ToString(), 587, MailKit.Security.SecureSocketOptions.StartTls);
 
                 await smtpClient.AuthenticateAsync(login, psw);
 
@@ -65,7 +62,7 @@ namespace EmailService.Services
                     catch (Exception ex)
                     {
                         Console.WriteLine($"Ошибка отправки email пользователю {data.Email}: {ex.Message}");
-                        allSent = false; // фиксируем, что хотя бы одно письмо не отправилось
+                        allSent = false;
                     }
                 }
 
