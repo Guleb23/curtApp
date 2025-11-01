@@ -32,8 +32,6 @@ services:
     environment:
       - ApiSettings__SenderUrl=http://188.225.85.223:5034/
       - ConnectionStrings__DefaultConnection=Host=83.147.245.95;Port=5432;Database=default_db;Username=gen_user;Password=3wliGvdfHP#30V
-    networks:
-      - app-network
 
   emailservice:
     build:
@@ -49,8 +47,6 @@ services:
       - smtpConfig__smtpConnection=smtp.yandex.ru
       - ASPNETCORE_URLS=http://+:5034
       - ASPNETCORE_ENVIRONMENT=Production
-    networks:
-      - app-network
 
 networks:
   app-network:
