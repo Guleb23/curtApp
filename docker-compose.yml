@@ -33,6 +33,7 @@ services:
       context: ./EmailService/EmailService
       dockerfile: Dockerfile
     container_name: emailservice_c
+    network_mode: "host"
     ports:
       - "5034:5034"
     environment:
