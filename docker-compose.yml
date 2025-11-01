@@ -6,6 +6,8 @@ services:
     container_name: client_c
     ports:
       - "5173:5173"
+    networks:
+      - app-network
 
   backend:
     build:
@@ -17,6 +19,9 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:7080
       - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - app-network
+
   backgroundservice:
     build:
       context: ./BackGroundService/BackGroundService
@@ -27,13 +32,16 @@ services:
     environment:
       - ApiSettings__SenderUrl=http://emailservice:5034/
       - ConnectionStrings__DefaultConnection=Host=83.147.245.95;Port=5432;Database=default_db;Username=gen_user;Password=3wliGvdfHP#30V
+    networks:
+      - app-network
 
   emailservice:
     build:
       context: ./EmailService/EmailService
       dockerfile: Dockerfile
     container_name: emailservice_c
-    network_mode: "host"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     ports:
       - "5034:5034"
     environment:
@@ -42,3 +50,9 @@ services:
       - smtpConfig__smtpConnection=smtp.yandex.ru
       - ASPNETCORE_URLS=http://+:5034
       - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
