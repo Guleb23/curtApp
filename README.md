@@ -16,8 +16,7 @@ graph TD
     D[Background Service] -->|"Запрос к Notification Service"| E[Notification Service]
     D -->|"Прямое подключение"| C
     E -->|"SMTP"| F[(Email Server)]
-
-
+```
 1. ### 🖥️ Frontend (React)
    - Разработан на **React + Js**
    - Авторизация через **JWT (Access + Refresh Tokens)**
