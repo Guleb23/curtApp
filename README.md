@@ -11,8 +11,8 @@ CurtService состоит из **четырёх микросервисов**, �
 
 ```mermaid
 graph TD
-    A[👨‍💻 Frontend (React)] -->|REST API| B[⚙️ Backend (ASP.NET Core)]
-    B -->|PostgreSQL| C[(🗄️ Database)]
-    D[⏰ Background Service] -->|Проверка дел| B
-    D -->|Отправка уведомлений| E[📧 Notification Service]
-    E -->|SMTP| F[(💌 Email Server)]
+    A[Frontend: React] -->|"REST API"| B[Backend: ASP.NET Core]
+    B -->|"PostgreSQL"| C[(Database)]
+    D[Background Service] -->|"Проверка дел"| B
+    D -->|"Отправка уведомлений"| E[Notification Service]
+    E -->|"SMTP"| F[(Email Server)]
