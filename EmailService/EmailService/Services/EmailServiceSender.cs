@@ -25,85 +25,93 @@ namespace EmailService.Services
             string login = _configuration["smtpConfig:login"]!;
             string connection = _configuration["smtpConfig:smtpConnection"]!;
 
-            Console.WriteLine($"=== SMTP Configuration ===");
-            Console.WriteLine($"Login: {login}");
-            Console.WriteLine($"Connection: {connection}");
-            Console.WriteLine($"Password length: {psw?.Length}");
-            Console.WriteLine($"Users to send: {usersData.Count}");
+            Console.WriteLine($"=== SMTP DEBUG ===");
+            Console.WriteLine($"Trying to connect to {connection}...");
 
             bool allSent = true;
 
             using var smtpClient = new SmtpClient();
 
+            // Увеличиваем таймаут
+            smtpClient.Timeout = 60000; // 60 секунд
+            smtpClient.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
             try
             {
-                Console.WriteLine($"Attempting to connect to {connection}:587...");
-
-                // Добавьте timeout
-                smtpClient.Timeout = 30000;
-
+                Console.WriteLine($"Attempt 1: Port 587 with StartTls...");
                 await smtpClient.ConnectAsync(connection, 587, MailKit.Security.SecureSocketOptions.StartTls);
-                Console.WriteLine("Connected successfully!");
+            }
+            catch (Exception ex1)
+            {
+                Console.WriteLine($"Port 587 failed: {ex1.Message}");
 
-                Console.WriteLine("Attempting authentication...");
-                await smtpClient.AuthenticateAsync(login, psw);
-                Console.WriteLine("Authenticated successfully!");
-
-                foreach (var data in usersData)
+                try
                 {
-                    if (data?.Email == null || data.OverdueCasesId == null || !data.OverdueCasesId.Any())
-                        continue;
-
-                    string message = $"По вашим делам №{string.Join(", ", data.OverdueCasesId)} приближается срок 30 дней";
-                    var email = new MimeMessage();
-                    email.From.Add(MailboxAddress.Parse(login));
-                    email.To.Add(MailboxAddress.Parse(data.Email));
-                    email.Subject = "Срочная информация по судебным делам";
-                    email.Body = new TextPart(MimeKit.Text.TextFormat.Text)
-                    {
-                        Text = message
-                    };
+                    Console.WriteLine($"Attempt 2: Port 465 with SSL...");
+                    await smtpClient.ConnectAsync(connection, 465, true);
+                }
+                catch (Exception ex2)
+                {
+                    Console.WriteLine($"Port 465 failed: {ex2.Message}");
 
                     try
                     {
-                        Console.WriteLine($"Sending email to {data.Email}...");
-                        await smtpClient.SendAsync(email);
-                        Console.WriteLine($"Email sent successfully to {data.Email}");
+                        Console.WriteLine($"Attempt 3: Port 25 without SSL...");
+                        await smtpClient.ConnectAsync(connection, 25, false);
                     }
-                    catch (Exception ex)
+                    catch (Exception ex3)
                     {
-                        Console.WriteLine($"Ошибка отправки email пользователю {data.Email}: {ex.Message}");
-                        Console.WriteLine($"Stack trace: {ex.StackTrace}");
-                        allSent = false;
+                        Console.WriteLine($"All connection attempts failed:");
+                        Console.WriteLine($"- Port 587: {ex1.Message}");
+                        Console.WriteLine($"- Port 465: {ex2.Message}");
+                        Console.WriteLine($"- Port 25: {ex3.Message}");
+                        return false;
                     }
                 }
+            }
 
-                await smtpClient.DisconnectAsync(true);
-                Console.WriteLine("Disconnected from SMTP server");
-            }
-            catch (AuthenticationException authEx)
+            Console.WriteLine($"Successfully connected to {connection}!");
+
+            try
             {
-                Console.WriteLine($"AUTHENTICATION ERROR: {authEx.Message}");
-                return false;
+                Console.WriteLine($"Authenticating as {login}...");
+                await smtpClient.AuthenticateAsync(login, psw);
+                Console.WriteLine($"Authentication successful!");
             }
-            catch (SmtpCommandException smtpEx)
+            catch (Exception authEx)
             {
-                Console.WriteLine($"SMTP COMMAND ERROR: {smtpEx.Message}");
-                Console.WriteLine($"Status Code: {smtpEx.StatusCode}");
-                return false;
-            }
-            catch (SmtpProtocolException protoEx)
-            {
-                Console.WriteLine($"SMTP PROTOCOL ERROR: {protoEx.Message}");
-                return false;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"GENERAL ERROR: {ex.Message}");
-                Console.WriteLine($"Stack trace: {ex.StackTrace}");
+                Console.WriteLine($"Authentication failed: {authEx.Message}");
                 return false;
             }
 
+            // Отправка emails...
+            foreach (var data in usersData)
+            {
+                if (data?.Email == null || data.OverdueCasesId == null || !data.OverdueCasesId.Any())
+                    continue;
+
+                var email = new MimeMessage();
+                email.From.Add(MailboxAddress.Parse(login));
+                email.To.Add(MailboxAddress.Parse(data.Email));
+                email.Subject = "Срочная информация по судебным делам";
+                email.Body = new TextPart(MimeKit.Text.TextFormat.Plain)
+                {
+                    Text = $"По вашим делам №{string.Join(", ", data.OverdueCasesId)} приближается срок 30 дней"
+                };
+
+                try
+                {
+                    await smtpClient.SendAsync(email);
+                    Console.WriteLine($"Email sent to {data.Email}");
+                }
+                catch (Exception sendEx)
+                {
+                    Console.WriteLine($"Failed to send to {data.Email}: {sendEx.Message}");
+                    allSent = false;
+                }
+            }
+
+            await smtpClient.DisconnectAsync(true);
             return allSent;
         }
     }
