@@ -32,11 +32,9 @@ namespace EmailService.Services
             using var smtpClient = new SmtpClient();
             try
             {
-                // Получаем IPv4 адрес сервера
-                var ipv4Address = Dns.GetHostAddresses(connection)
-                                     .First(a => a.AddressFamily == AddressFamily.InterNetwork);
+                
 
-                await smtpClient.ConnectAsync(ipv4Address.ToString(), 587, MailKit.Security.SecureSocketOptions.StartTls);
+                await smtpClient.ConnectAsync(connection, 587, MailKit.Security.SecureSocketOptions.StartTls);
 
                 await smtpClient.AuthenticateAsync(login, psw);
 
