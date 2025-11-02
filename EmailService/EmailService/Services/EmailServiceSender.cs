@@ -38,8 +38,8 @@ namespace EmailService.Services
 
             try
             {
-                Console.WriteLine($"Attempt 1: Port 587 with StartTls...");
-                await smtpClient.ConnectAsync(connection, 587, MailKit.Security.SecureSocketOptions.StartTls);
+                Console.WriteLine($"Attempt 1: Port 443 with StartTls...");
+                await smtpClient.ConnectAsync(connection, 443, MailKit.Security.SecureSocketOptions.StartTls);
             }
             catch (Exception ex1)
             {
