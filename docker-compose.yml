@@ -38,22 +38,15 @@ services:
       context: ./EmailService/EmailService
       dockerfile: Dockerfile
     container_name: emailservice_c
+    network_mode: "host"
     ports:
       - "5034:5034"
-    networks:
-      - app-network
     environment:
       - smtpConfig__login=gleb.hlopotov@yandex.ru
       - smtpConfig__psw=xcvlptldsfvquzob
       - smtpConfig__smtpConnection=smtp.yandex.ru
       - ASPNETCORE_URLS=http://+:5034
       - ASPNETCORE_ENVIRONMENT=Production
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
-      - 1.1.1.1
-    extra_hosts:
-      - "smtp.yandex.ru:77.88.21.119"
 
 networks:
   app-network:
