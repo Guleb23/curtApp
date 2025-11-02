@@ -13,6 +13,6 @@ CurtService состоит из **четырёх микросервисов**, �
 graph TD
     A[Frontend: React] -->|"REST API"| B[Backend: ASP.NET Core]
     B -->|"PostgreSQL"| C[(Database)]
-    D[Background Service] -->|"Проверка дел"| B
-    D -->|"Отправка уведомлений"| E[Notification Service]
+    D[Background Service] -->|"Запрос к Notification Service"| E[Notification Service]
+    D -->|"Прямое подключение"| C
     E -->|"SMTP"| F[(Email Server)]
