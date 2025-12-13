@@ -48,7 +48,7 @@ namespace ApiForSud.Services.CaseService
 
         public async Task<List<Case>> GetAllCases()
         {
-            return await _dbContext.Cases.ToListAsync();
+            return await _dbContext.Cases.Where(c => c.IsArhcived == false).ToListAsync();
         }
 
         public async Task<CaseResponseDTO?> GetDetailCasesById( Guid userId, Guid caseId)
@@ -121,7 +121,7 @@ namespace ApiForSud.Services.CaseService
 
         public async Task<List<Case>> GetCasesById(Guid userId)
         {
-            return await _dbContext.Cases.Where(c => c.UserId == userId).ToListAsync();
+            return await _dbContext.Cases.Where(c => c.UserId == userId && c.IsArhcived == false).ToListAsync();
         }
 
         public async Task<bool> DeleteCase(Guid caseId, Guid userId)
@@ -248,6 +248,54 @@ namespace ApiForSud.Services.CaseService
                 return true;
             }
 
+        }
+
+        public async Task<List<Case>> GatArchiveCases()
+        {
+            return await _dbContext.Cases.Where(c => c.IsArhcived == true).ToListAsync();
+        }
+
+        public async Task<List<Case>> GatArchiveCasesById(Guid userId)
+        {
+            return await _dbContext.Cases.Where(c => c.UserId == userId && c.IsArhcived == true).ToListAsync();
+        }
+
+        public async Task<bool> Archive(Guid caseId)
+        {
+            var currentCase = await _dbContext.Cases.FirstOrDefaultAsync(c => c.Id == caseId);
+
+            if (currentCase == null)
+            {
+                return false;
+            }
+            else
+            {
+                currentCase.IsArhcived = true;
+                currentCase.ArchivedDate = DateTime.UtcNow;
+
+                await _dbContext.SaveChangesAsync();
+
+                return true;
+            }
+        }
+
+        public async Task<bool> UnArchive(Guid caseId)
+        {
+            var currentCase = await _dbContext.Cases.FirstOrDefaultAsync(c => c.Id == caseId);
+
+            if (currentCase == null)
+            {
+                return false;
+            }
+            else
+            {
+                currentCase.IsArhcived = false;
+                currentCase.ArchivedDate = null;
+
+                await _dbContext.SaveChangesAsync();
+
+                return true;
+            }
         }
     }
 }

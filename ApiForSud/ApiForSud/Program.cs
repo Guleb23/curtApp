@@ -2,7 +2,10 @@ using ApiForSud.Data;
 using ApiForSud.Services.AuthService;
 using ApiForSud.Services.CaseService;
 using ApiForSud.Services.CurtInstanceService;
+using ApiForSud.Services.DirectorService;
 using ApiForSud.Services.PasswordService;
+using ApiForSud.Services.PdfService;
+using ApiForSud.Services.ReportService;
 using ApiForSud.Services.TokenService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -47,16 +50,32 @@ namespace ApiForSud
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ICaseService, CaseService>();
             builder.Services.AddScoped<ICurtInstanceService, CurtInstanceService>();
+            builder.Services.AddScoped<IAdminService, AdminService>();
+            builder.Services.AddScoped<IReportService, ReportService>();
+            builder.Services.AddScoped<IPdfService, PdfService>();
 
             builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
                 {
-                    options.AddPolicy("AllowAll", policy =>
-                {
-                    policy.AllowAnyOrigin()
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
+                    policy.WithOrigins(
+                        "http://frontend:5173",
+                        "http://nginx_proxy:80",
+                        "http://nginx_proxy",
+                        "http://localhost:5080",
+                        "http://localhost:5173",
+                        "https://localhost:5080",
+                        "http://client_c:5173",
+                        "http://127.0.0.1:5080",
+                        "http://127.0.0.1:5173"
+                    )
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .WithExposedHeaders("Content-Disposition");
                 });
-                });
+            });
+
 
 
             //��
@@ -65,18 +84,35 @@ namespace ApiForSud
                 options.UseNpgsql(builder.Configuration.GetConnectionString("MydefaultConnection"));
             });
             builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(7080); // только HTTP
-});
+            {
+                options.ListenAnyIP(7080); // только HTTP
+            });
 
             var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var context = services.GetRequiredService<ApplicationDBContext>();
+                    var passwordService = services.GetRequiredService<IPasswordService>();
+                    context.Database.Migrate();
+                    SeedData.Initialize(context, passwordService);
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while seeding the database.");
+                }
+            }
 
             app.UseCors("AllowAll");
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapOpenApi();
-            app.MapScalarApiReference();
+            app.MapScalarApiReference("/docs");
             app.MapControllers();
 
 

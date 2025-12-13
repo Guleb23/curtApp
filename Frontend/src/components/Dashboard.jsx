@@ -6,9 +6,10 @@ import CasesTable from './CasesTable';
 import { Plus, RefreshCw, LogOut, Search, AlertTriangle } from 'lucide-react';
 import AdminTable from './AdminTable';
 import InfoAboutCase from './InfoAboutCase';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
-    const { user, logout, isUser, isAdmin } = useAuth();
+    const { user, logout, isUser, isDirector } = useAuth();
     const [cases, setCases] = useState([]);
     const [filteredCases, setFilteredCases] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -18,7 +19,14 @@ const Dashboard = () => {
     const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [expiredCases, setExpiredCases] = useState([]);
+    const navigate = useNavigate();
 
+    const [startDate, setStartDate] = useState(new Date().toISOString().split("T")[0]);
+    const [endDate, setEndDate] = useState(new Date().toISOString().split("T")[0]);
+    const payload = {
+        start: startDate, // формат YYYY-MM-DD
+        end: endDate
+    };
     // Функция для проверки просроченных дел
     const checkExpiredCases = useCallback((casesData) => {
         const now = new Date();
@@ -81,7 +89,7 @@ const Dashboard = () => {
     const fetchCases = useCallback(async () => {
         try {
             setLoading(true);
-            const endpoint = isAdmin ? '/case/allcases' : '/case/usercases';
+            const endpoint = isDirector ? '/case/allcases' : '/case/usercases';
             console.log('Fetching from endpoint:', endpoint);
             const response = await api.get(endpoint);
             const casesData = response.data;
@@ -95,7 +103,7 @@ const Dashboard = () => {
         } finally {
             setLoading(false);
         }
-    }, [isAdmin, checkExpiredCases]);
+    }, [isDirector, checkExpiredCases]);
 
     useEffect(() => {
         fetchCases();
@@ -165,7 +173,7 @@ const Dashboard = () => {
 
     // Определяем какой компонент показывать
     const renderContent = () => {
-        if (isAdmin) {
+        if (isDirector) {
             return (
                 <AdminTable
                     cases={filteredCases}
@@ -207,7 +215,73 @@ const Dashboard = () => {
                         Управление вашими судебными делами и заседаниями
                     </p>
                 </div>
+                {isDirector && (
+                    <div
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "12px",
+                            padding: "12px",
+                            background: "white",
+                            borderRadius: "12px",
+                            boxShadow: "0 4px 8px rgba(0,0,0,0.05)"
+                        }}
+                    >
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                            <label style={{ fontSize: "12px", marginBottom: "3px" }}>От:</label>
+                            <input
+                                type="date"
+                                value={startDate}
+                                onChange={(e) => setStartDate(e.target.value)}
+                                className="border rounded-md px-2 py-1 text-sm"
+                            />
+                        </div>
 
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                            <label style={{ fontSize: "12px", marginBottom: "3px" }}>До:</label>
+                            <input
+                                type="date"
+                                value={endDate}
+                                onChange={(e) => setEndDate(e.target.value)}
+                                className="border rounded-md px-2 py-1 text-sm"
+                            />
+                        </div>
+
+                        <button
+                            onClick={async () => {
+                                if (!startDate || !endDate) {
+                                    alert("Выберите обе даты!");
+                                    return;
+                                }
+
+                                try {
+                                    const payload = { start: startDate, end: endDate };
+
+                                    const response = await api.post(
+                                        `/report`,
+                                        payload,
+                                        { responseType: "blob" }
+                                    );
+
+                                    const url = window.URL.createObjectURL(new Blob([response.data]));
+                                    const link = document.createElement("a");
+                                    link.href = url;
+                                    link.setAttribute("download", `report_${startDate}_${endDate}.pdf`);
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    link.remove();
+                                } catch (err) {
+                                    console.error(err);
+                                    alert("Ошибка при скачивании отчёта");
+                                }
+                            }}
+                            className="px-4 py-2 bg-green-600 text-white rounded-xl font-medium 
+               hover:bg-green-700 transition duration-200 active:scale-[0.97]"
+                        >
+                            Скачать отчёт
+                        </button>
+                    </div>
+                )}
                 <div style={styles.actions}>
                     <button
                         onClick={fetchCases}
@@ -216,6 +290,22 @@ const Dashboard = () => {
                     >
                         <RefreshCw size={16} className={loading ? 'spin' : ''} />
                         Обновить
+                    </button>
+                    <button onClick={() => navigate("/archive")}
+                        className="
+                        px-5 py-2.5 
+                        bg-white
+                        text-indigo-600
+                        border border-indigo-600
+                        rounded-xl
+                        font-medium
+                      hover:bg-indigo-50
+                        transition 
+                        duration-200
+                        active:scale-[0.97]
+  "
+                    >
+                        Архив
                     </button>
 
                     {isUser && (
@@ -236,6 +326,7 @@ const Dashboard = () => {
                         Выйти
                     </button>
                 </div>
+
             </div>
 
             {/* Уведомление о просроченных делах */}
@@ -311,7 +402,7 @@ const Dashboard = () => {
                     isEditing={isEditing}
                 />
             )}
-            {isAdmin && (
+            {isDirector && (
                 <InfoAboutCase
                     isOpen={isAdminModalOpen}
                     onClose={handleCloseAdmin}

@@ -65,6 +65,7 @@ export const AuthProvider = ({ children }) => {
         logout,
         isAuthenticated: authService.isAuthenticated(),
         isAdmin: authService.isAdmin(),
+        isDirector: authService.isDirector(),
         isUser: authService.isUser(),
         hasRole: (role) => authService.hasRole(role),
         hasAnyRole: (roles) => authService.hasAnyRole(roles),

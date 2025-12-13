@@ -1,41 +1,97 @@
-import React from 'react';
-import { useAuth } from './context/AuthContext';
-import Login from './components/Login';
-import Register from './components/Register';
-import Dashboard from './components/Dashboard';
+
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "./context/AuthContext";
+
+import Login from "./components/Login";
+
+import Dashboard from "./components/Dashboard";
+import AdminDashboard from "./components/AdminDashboard";
+import ArchivePage from "./components/ArchivePage";
+
+import PrivateRoute from "./router/PrivateRoute";
+import AdminRoute from "./router/AdminRoute";
+import { useEffect } from "react";
 
 function App() {
-  const { isAuthenticated, loading } = useAuth();
-  const [currentView, setCurrentView] = React.useState('login');
+  const navigate = useNavigate();
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const {
+    isAuthenticated,
+    isAdmin,
+    isDirector,
+    isUser,
+    logout,
+    user
+  } = useAuth();
 
-  if (isAuthenticated) {
-    return <Dashboard />;
-  }
+
+  const location = useLocation();
+  useEffect(() => {
+    if (!isAuthenticated) return;
+
+    const onLoginPage = location.pathname === "/login" || location.pathname === "/";
+
+    if (!onLoginPage) return;
+
+    if (isAdmin) {
+      navigate("/admin", { replace: true });
+    } else if (isDirector || isUser) {
+      navigate("/dashboard", { replace: true });
+    }
+  }, [
+    location.pathname,
+    isAuthenticated,
+    isAdmin,
+    isDirector,
+    isUser,
+    navigate
+  ]);
+
 
   return (
-    <div>
-      <nav style={{ padding: '20px', background: '#f8f9fa', borderBottom: '1px solid #dee2e6' }}>
-        <button
-          onClick={() => setCurrentView('login')}
-          style={{ marginRight: '10px', padding: '8px 16px' }}
-        >
-          Войти
-        </button>
-        <button
-          onClick={() => setCurrentView('register')}
-          style={{ padding: '8px 16px' }}
-        >
-          Регистрация
-        </button>
-      </nav>
+    <Routes>
 
-      {currentView === 'login' ? <Login /> : <Register />}
-    </div>
+      <Route path="/login" element={<Login />} />
+
+      <Route
+        path="/admin"
+        element={
+          <AdminRoute>
+            <AdminDashboard onLogout={logout} user={user} />
+          </AdminRoute>
+        }
+      />
+
+      <Route
+        path="/dashboard"
+        element={
+          <PrivateRoute>
+            <Dashboard onLogout={logout} user={user} />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/archive"
+        element={
+          <PrivateRoute>
+            <ArchivePage />
+          </PrivateRoute>
+        }
+      />
+
+      {/* Если не знаем куда — редирект на /login */}
+      <Route path="*" element={<Navigate to="/login" />} />
+
+    </Routes>
   );
 }
 
-export default App;
+export default function Wrapper() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}
+

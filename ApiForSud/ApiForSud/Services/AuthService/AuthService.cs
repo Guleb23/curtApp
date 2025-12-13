@@ -21,32 +21,6 @@ namespace ApiForSud.Services.AuthService
             _tokenService = tokenService;
         }
 
-        public async Task<User?> CreateUser(UserDTO userDTO)
-        {
-            bool userExists = await _context.Users
-                .AnyAsync(u => u.Login == userDTO.Login);
-
-            if (userExists)
-            {
-                return null;
-            }
-            else
-            {
-                User user = new User()
-                {
-                    Id = Guid.NewGuid(),
-                    Login = userDTO.Login,
-                    PasswordHash = _passwordService.HashPassword(userDTO.Password),
-                    Email = userDTO.Email,
-                    RoleId = 1
-                };
-                _context.Users.Add(user);
-                await _context.SaveChangesAsync();
-                return user;
-
-            }
-        }
-
         public async Task<TokenResponse> Login(UserDTO userDTO)
         {
             if (string.IsNullOrWhiteSpace(userDTO.Login) ||

@@ -1,4 +1,5 @@
 ﻿using ApiForSud.Models.DatabaseModels;
+using ApiForSud.Services.PasswordService;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiForSud.Data
@@ -16,7 +17,8 @@ namespace ApiForSud.Data
 
             modelBuilder.Entity<Role>().HasData(
                 new Role { Id = 1, Name = "User" },
-                new Role { Id = 2, Name = "Admin" }
+                new Role { Id = 2, Name = "Admin" },
+                new Role { Id = 3, Name = "Director" }
                 );
 
             modelBuilder.Entity<Case>()

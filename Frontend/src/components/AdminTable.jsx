@@ -21,7 +21,7 @@ const AdminTable = ({ cases, loading, onDetailInfo, onRefresh }) => {
 
     const handleMarkerCase = async (caseData) => {
         try {
-            await api.get(`/case/marker/${caseData.id}`);
+            await api.patch(`/case/marker/${caseData.id}`);
         } catch (error) {
             console.error(`❌ Ошибка при дела:`, error);
         }
@@ -29,7 +29,7 @@ const AdminTable = ({ cases, loading, onDetailInfo, onRefresh }) => {
 
     const handleUnMarkerCase = async (caseData) => {
         try {
-            await api.get(`/case/unmarker/${caseData.id}`);
+            await api.patch(`/case/unmarker/${caseData.id}`);
 
         } catch (error) {
             console.error(`❌ Ошибка при дела:`, error);

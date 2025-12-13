@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const API_URL = 'http://188.225.85.223:7080/api/auth';
+const API_URL = 'http://localhost:7080/api/auth';
 
 const api = axios.create({
-    baseURL: 'http://188.225.85.223:7080/api',
+    baseURL: 'http://localhost:7080/api',
     headers: {
         'Content-Type': 'application/json',
     },
@@ -200,6 +200,9 @@ export const authService = {
     // Проверка является ли админом
     isAdmin() {
         return this.hasRole('Admin') || this.hasRole('Administrator'); // Добавляем варианты
+    },
+    isDirector() {
+        return this.hasRole('Director') || this.hasRole('director'); // Добавляем варианты
     },
 
     // Проверка является ли пользователем

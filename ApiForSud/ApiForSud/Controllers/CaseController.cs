@@ -48,6 +48,13 @@ namespace ApiForSud.Controllers
             return await _caseService.GetAllCases();
         }
 
+        [Authorize]
+        [HttpGet("all-arhcive")]
+        public async Task<ActionResult<List<Case>>> GetAllArhive()
+        {
+            return await _caseService.GatArchiveCases();
+        }
+
 
 
         [Authorize]
@@ -131,8 +138,25 @@ namespace ApiForSud.Controllers
 
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpGet("marker/{caseId}")]
+        [Authorize]
+        [HttpGet("archive")]
+        public async Task<ActionResult<Case>> GetArhciveCasesById()
+        {
+            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (claim == null || !Guid.TryParse(claim.Value, out var userId))
+            {
+                return Unauthorized("Invalid token");
+            }
+            else
+            {
+                var result = await _caseService.GatArchiveCasesById(userId);
+                return Ok(result);
+            }
+
+        }
+
+        [Authorize(Roles = "Director")]
+        [HttpPatch("marker/{caseId}")]
         public async Task<ActionResult<bool>> MarkerCase(Guid caseId)
         {
             if(caseId == null)
@@ -146,8 +170,8 @@ namespace ApiForSud.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpGet("unmarker/{caseId}")]
+        [Authorize(Roles = "Director")]
+        [HttpPatch("unmarker/{caseId}")]
         public async Task<ActionResult<bool>> UnMarkerCase(Guid caseId)
         {
             if (caseId == null)
@@ -157,6 +181,36 @@ namespace ApiForSud.Controllers
             else
             {
                 await _caseService.UnMarkerByAdmin(caseId);
+                return Ok(true);
+            }
+        }
+
+        [Authorize(Roles = "Director, User")]
+        [HttpPatch("archive/{caseId}")]
+        public async Task<ActionResult<bool>> ArchiveCase(Guid caseId)
+        {
+            if (caseId == null)
+            {
+                return BadRequest("");
+            }
+            else
+            {
+                await _caseService.Archive(caseId);
+                return Ok(true);
+            }
+        }
+
+        [Authorize(Roles = "Director, User")]
+        [HttpPatch("unarchive/{caseId}")]
+        public async Task<ActionResult<bool>> UnArchiveCase(Guid caseId)
+        {
+            if (caseId == null)
+            {
+                return BadRequest("");
+            }
+            else
+            {
+                await _caseService.UnArchive(caseId);
                 return Ok(true);
             }
         }

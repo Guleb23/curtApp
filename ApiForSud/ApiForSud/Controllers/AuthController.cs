@@ -20,26 +20,6 @@ namespace ApiForSud.Controllers
             _authService = authService;
         }
 
-
-        [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(UserDTO inputUser)
-        {
-            if (inputUser == null)
-            {
-                return BadRequest("Null input data");
-            }
-
-            var user = await _authService.CreateUser(inputUser);
-
-            if (user == null)
-            {
-                return Conflict("User already exists");
-            }
-
-            return Ok(user);
-        }
-
-
         [HttpPost("login")]
         public async Task<ActionResult<TokenResponse>> Login(UserDTO inputUser)
         {

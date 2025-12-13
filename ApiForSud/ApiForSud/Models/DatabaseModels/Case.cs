@@ -18,6 +18,7 @@ namespace ApiForSud.Models.DatabaseModels
         public string Reason { get; set; }
 
         public DateTime? DateOfCurt { get; set; }
+        public DateTime? CreatedDate { get; set; } = DateTime.UtcNow;
 
         public string ResultOfCurt { get; set; }
 
@@ -30,6 +31,9 @@ namespace ApiForSud.Models.DatabaseModels
         public bool IsUnMarkeredByAdmin { get; set; } = false;
 
         public bool IsNotificated { get; set; } = false;
+        public bool IsArhcived { get; set; } = false;
+
+        public DateTime? ArchivedDate { get; set; }
 
         public virtual User User { get; set; } = null;
 

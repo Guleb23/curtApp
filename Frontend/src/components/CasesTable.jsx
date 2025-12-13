@@ -172,46 +172,83 @@ const CasesTable = ({ cases, loading, fetchUserCases, onEditCase }) => {
         {
             id: 'actions',
             header: 'Действия',
-            cell: info => (
-                <div style={{ display: 'flex', gap: '8px' }}>
-                    <button
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            handleEditCase(info.row.original.id);
-                        }}
-                        style={{
-                            padding: '4px 8px',
-                            backgroundColor: '#007bff',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '4px',
-                            cursor: 'pointer',
-                            fontSize: '12px'
-                        }}
-                        title="Редактировать дело"
-                    >
-                        ✏️
-                    </button>
-                    <button
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            handleDeleteCase(info.row.original.id);
-                        }}
-                        style={{
-                            padding: '4px 8px',
-                            backgroundColor: '#e53e3e',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '4px',
-                            cursor: 'pointer',
-                            fontSize: '12px'
-                        }}
-                    >
-                        🗑️
-                    </button>
-                </div>
-            ),
-            size: 120,
+            cell: info => {
+                const row = info.row.original;
+
+                const handleArchive = async () => {
+                    try {
+                        await api.patch(`/case/archive/${row.id}`, {
+                            isArchived: true
+                        });
+
+                        fetchUserCases();
+                        alert('Дело перемещено в архив');
+                    } catch (error) {
+                        console.error('Archive error:', error);
+                        alert('Ошибка архивации');
+                    }
+                };
+
+                return (
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleEditCase(row.id);
+                            }}
+                            style={{
+                                padding: '4px 8px',
+                                backgroundColor: '#007bff',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '4px',
+                                cursor: 'pointer',
+                                fontSize: '12px'
+                            }}
+                        >
+                            ✏️
+                        </button>
+
+                        {/* Только архив */}
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleArchive();
+                            }}
+                            style={{
+                                padding: '4px 8px',
+                                backgroundColor: '#718096',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '4px',
+                                cursor: 'pointer',
+                                fontSize: '12px'
+                            }}
+                        >
+                            📦 Архив
+                        </button>
+
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                handleDeleteCase(row.id);
+                            }}
+                            style={{
+                                padding: '4px 8px',
+                                backgroundColor: '#e53e3e',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '4px',
+                                cursor: 'pointer',
+                                fontSize: '12px'
+                            }}
+                        >
+                            🗑️
+                        </button>
+                    </div>
+                );
+            },
+            size: 160,
         }
     ], []);
 

@@ -32,6 +32,12 @@ namespace ApiForSud.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<DateTime?>("ArchivedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<DateTime?>("DateOfCurt")
                         .HasColumnType("timestamp with time zone");
 
@@ -41,6 +47,9 @@ namespace ApiForSud.Migrations
                     b.Property<string>("Defendant")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsArhcived")
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsMarkeredByAdmin")
                         .HasColumnType("boolean");
@@ -145,6 +154,11 @@ namespace ApiForSud.Migrations
                         {
                             Id = 2,
                             Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Director"
                         });
                 });
 
@@ -155,6 +169,9 @@ namespace ApiForSud.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FIO")
                         .HasColumnType("text");
 
                     b.Property<string>("Login")

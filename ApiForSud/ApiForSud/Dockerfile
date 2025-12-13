@@ -14,6 +14,8 @@ WORKDIR /app
 
 COPY --from=build /app/publish .
 
+COPY ./wwwroot/fonts ./wwwroot/fonts
+
 # Контейнер слушает только HTTP
 ENV ASPNETCORE_URLS=http://+:7080
 EXPOSE 7080

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\юзер\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\ApiForSud.csproj": {}
+    "C:\\Users\\юзер\\Desktop\\curtProject\\curtApp\\ApiForSud\\ApiForSud\\ApiForSud.csproj": {}
   },
   "projects": {
-    "C:\\Users\\юзер\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\ApiForSud.csproj": {
+    "C:\\Users\\юзер\\Desktop\\curtProject\\curtApp\\ApiForSud\\ApiForSud\\ApiForSud.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\юзер\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\ApiForSud.csproj",
+        "projectUniqueName": "C:\\Users\\юзер\\Desktop\\curtProject\\curtApp\\ApiForSud\\ApiForSud\\ApiForSud.csproj",
         "projectName": "ApiForSud",
-        "projectPath": "C:\\Users\\юзер\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\ApiForSud.csproj",
+        "projectPath": "C:\\Users\\юзер\\Desktop\\curtProject\\curtApp\\ApiForSud\\ApiForSud\\ApiForSud.csproj",
         "packagesPath": "C:\\Users\\юзер\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\юзер\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\obj\\",
+        "outputPath": "C:\\Users\\юзер\\Desktop\\curtProject\\curtApp\\ApiForSud\\ApiForSud\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -51,6 +51,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "BouncyCastle.NetCore": {
+              "target": "Package",
+              "version": "[2.2.1, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[9.0.10, )"
@@ -84,6 +88,14 @@
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[8.14.0, )"
+            },
+            "itext": {
+              "target": "Package",
+              "version": "[9.4.0, )"
+            },
+            "itext.bouncy-castle-adapter": {
+              "target": "Package",
+              "version": "[9.4.0, )"
             }
           },
           "imports": [

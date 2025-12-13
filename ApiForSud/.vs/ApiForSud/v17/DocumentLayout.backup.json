@@ -1,54 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\",
+  "WorkspaceRootPath": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\curtApp\\ApiForSud\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\services\\authservice\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\services\\authservice\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\curtapp\\apiforsud\\apiforsud\\services\\pdfservice\\pdfservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\services\\pdfservice\\pdfservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\curtapp\\apiforsud\\apiforsud\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\models\\databasemodels\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\models\\databasemodels\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\migrations\\20251031101458_email.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\migrations\\20251031101458_email.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\migrations\\20251031095517_isnitificated.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\migrations\\20251031095517_isnitificated.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\models\\databasemodels\\case.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\models\\databasemodels\\case.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\curtapp\\apiforsud\\apiforsud\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\services\\curtinstanceservice\\curtinstanceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\services\\curtinstanceservice\\curtinstanceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\controllers\\curtinstancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\controllers\\curtinstancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|c:\\users\\\u044E\u0437\u0435\u0440\\desktop\\curtproject\\apiforsud\\apiforsud\\models\\databasemodels\\curtinstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D40C2912-ED73-41EF-931A-C05202CB0EEF}|ApiForSud\\ApiForSud.csproj|solutionrelative:apiforsud\\models\\databasemodels\\curtinstance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,156 +22,50 @@
       "DocumentGroups": [
         {
           "DockedHeight": 250,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PdfService.cs",
+              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\curtApp\\ApiForSud\\ApiForSud\\Services\\PdfService\\PdfService.cs",
+              "RelativeDocumentMoniker": "ApiForSud\\Services\\PdfService\\PdfService.cs",
+              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\curtApp\\ApiForSud\\ApiForSud\\Services\\PdfService\\PdfService.cs",
+              "RelativeToolTip": "ApiForSud\\Services\\PdfService\\PdfService.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAqwHoAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-13T02:05:52.398Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "ApiForSud\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "ApiForSud\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAnwDIAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T10:52:26.803Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Services\\AuthService\\AuthService.cs",
-              "RelativeDocumentMoniker": "ApiForSud\\Services\\AuthService\\AuthService.cs",
-              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Services\\AuthService\\AuthService.cs",
-              "RelativeToolTip": "ApiForSud\\Services\\AuthService\\AuthService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T10:45:29.064Z",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\curtApp\\ApiForSud\\ApiForSud\\appsettings.json",
+              "RelativeDocumentMoniker": "ApiForSud\\appsettings.json",
+              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\curtApp\\ApiForSud\\ApiForSud\\appsettings.json",
+              "RelativeToolTip": "ApiForSud\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-13T01:33:30.75Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserDTO.cs",
-              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\DTOs\\UserDTO.cs",
-              "RelativeDocumentMoniker": "ApiForSud\\DTOs\\UserDTO.cs",
-              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\DTOs\\UserDTO.cs",
-              "RelativeToolTip": "ApiForSud\\DTOs\\UserDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T10:45:11.461Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "20251031101458_email.cs",
-              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Migrations\\20251031101458_email.cs",
-              "RelativeDocumentMoniker": "ApiForSud\\Migrations\\20251031101458_email.cs",
-              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Migrations\\20251031101458_email.cs",
-              "RelativeToolTip": "ApiForSud\\Migrations\\20251031101458_email.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T10:14:58.911Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Models\\DatabaseModels\\User.cs",
-              "RelativeDocumentMoniker": "ApiForSud\\Models\\DatabaseModels\\User.cs",
-              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Models\\DatabaseModels\\User.cs",
-              "RelativeToolTip": "ApiForSud\\Models\\DatabaseModels\\User.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAIA9wBEAAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T10:13:10.538Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "20251031095517_isNitificated.cs",
-              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Migrations\\20251031095517_isNitificated.cs",
-              "RelativeDocumentMoniker": "ApiForSud\\Migrations\\20251031095517_isNitificated.cs",
-              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Migrations\\20251031095517_isNitificated.cs",
-              "RelativeToolTip": "ApiForSud\\Migrations\\20251031095517_isNitificated.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T09:55:17.272Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Case.cs",
-              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Models\\DatabaseModels\\Case.cs",
-              "RelativeDocumentMoniker": "ApiForSud\\Models\\DatabaseModels\\Case.cs",
-              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Models\\DatabaseModels\\Case.cs",
-              "RelativeToolTip": "ApiForSud\\Models\\DatabaseModels\\Case.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAAwB8AAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T08:44:09.407Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CurtInstanceService.cs",
-              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Services\\CurtInstanceService\\CurtInstanceService.cs",
-              "RelativeDocumentMoniker": "ApiForSud\\Services\\CurtInstanceService\\CurtInstanceService.cs",
-              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Services\\CurtInstanceService\\CurtInstanceService.cs",
-              "RelativeToolTip": "ApiForSud\\Services\\CurtInstanceService\\CurtInstanceService.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwCIAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T12:27:21.514Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "CurtInstanceController.cs",
-              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Controllers\\CurtInstanceController.cs",
-              "RelativeDocumentMoniker": "ApiForSud\\Controllers\\CurtInstanceController.cs",
-              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Controllers\\CurtInstanceController.cs",
-              "RelativeToolTip": "ApiForSud\\Controllers\\CurtInstanceController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwCIAAABKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T12:27:04.874Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "CurtInstance.cs",
-              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Models\\DatabaseModels\\CurtInstance.cs",
-              "RelativeDocumentMoniker": "ApiForSud\\Models\\DatabaseModels\\CurtInstance.cs",
-              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Models\\DatabaseModels\\CurtInstance.cs",
-              "RelativeToolTip": "ApiForSud\\Models\\DatabaseModels\\CurtInstance.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAA1wAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T12:26:32.193Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\curtApp\\ApiForSud\\ApiForSud\\Program.cs",
               "RelativeDocumentMoniker": "ApiForSud\\Program.cs",
-              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\Program.cs",
+              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\curtApp\\ApiForSud\\ApiForSud\\Program.cs",
               "RelativeToolTip": "ApiForSud\\Program.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAIAwwEEAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAADYAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-30T04:49:07.004Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\appsettings.json",
-              "RelativeDocumentMoniker": "ApiForSud\\appsettings.json",
-              "ToolTip": "C:\\Users\\\u044E\u0437\u0435\u0440\\Desktop\\curtProject\\ApiForSud\\ApiForSud\\appsettings.json",
-              "RelativeToolTip": "ApiForSud\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAB1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-10-30T04:48:59.336Z"
+              "WhenOpened": "2025-12-12T22:56:15.095Z",
+              "EditorCaption": ""
             }
           ]
         }

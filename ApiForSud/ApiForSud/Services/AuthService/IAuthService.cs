@@ -6,7 +6,6 @@ namespace ApiForSud.Services.AuthService
 {
     public interface IAuthService
     {
-        Task<User?> CreateUser(UserDTO userDTO);
 
         Task<TokenResponse> Login(UserDTO userDTO);
 
