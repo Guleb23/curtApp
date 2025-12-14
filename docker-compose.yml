@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: nginx_proxy
     ports:
-      - "5080:80"
+      - "80:80"
       - "443:443"
     depends_on:
       - frontend
@@ -31,34 +31,35 @@ services:
     environment:
       - ASPNETCORE_URLS=http://+:7080
       - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__MydefaultConnection=${DB_CONNECTION}
     networks:
       - app-network
 
-  #backgroundservice:
-  #  build:
-  #    context: ./BackGroundService/BackGroundService
-  #    dockerfile: Dockerfile
-  #  container_name: backgroundservice_c
-  #  depends_on:
-  #    - emailservice
-  #  environment:
-  #    - ApiSettings__SenderUrl=${API_SENDER_URL}
-  #    - ConnectionStrings__DefaultConnection=${DB_CONNECTION}
+  backgroundservice:
+    build:
+      context: ./BackGroundService/BackGroundService
+      dockerfile: Dockerfile
+    container_name: backgroundservice_c
+    depends_on:
+      - emailservice
+    environment:
+      - ApiSettings__SenderUrl=${API_SENDER_URL}
+      - ConnectionStrings__MydefaultConnection=${DB_CONNECTION}
 
-  #emailservice:
-  #  build:
-  #    context: ./EmailService/EmailService
-  #    dockerfile: Dockerfile
-  #  container_name: emailservice_c
-  #  network_mode: "host"
-  #  ports:
-  #    - "5034:5034"
-  #  environment:
-  #    - smtpConfig__login=${SMTP_LOGIN}
-  #    - smtpConfig__psw=${SMTP_PASSWORD}
-  #    - smtpConfig__smtpConnection=${SMTP_CONNECTION}
-  #    - ASPNETCORE_URLS=http://+:5034
-  #    - ASPNETCORE_ENVIRONMENT=Production
+  emailservice:
+    build:
+      context: ./EmailService/EmailService
+      dockerfile: Dockerfile
+    container_name: emailservice_c
+    network_mode: "host"
+    ports:
+      - "5034:5034"
+    environment:
+      - smtpConfig__login=${SMTP_LOGIN}
+      - smtpConfig__psw=${SMTP_PASSWORD}
+      - smtpConfig__smtpConnection=${SMTP_CONNECTION}
+      - ASPNETCORE_URLS=http://+:5034
+      - ASPNETCORE_ENVIRONMENT=Production
 
 networks:
   app-network:
