@@ -1,7 +1,9 @@
 ﻿using ApiForSud.Data;
 using ApiForSud.DTOs;
+using ApiForSud.Migrations;
 using ApiForSud.Models.DatabaseModels;
 using Microsoft.EntityFrameworkCore;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace ApiForSud.Services.CaseService
 {
@@ -46,9 +48,28 @@ namespace ApiForSud.Services.CaseService
             
         }
 
-        public async Task<List<Case>> GetAllCases()
+        public async Task<List<CaseUserDto>> GetAllCases()
         {
-            return await _dbContext.Cases.Where(c => c.IsArhcived == false).ToListAsync();
+            return await _dbContext.Cases.Where(c => c.IsArhcived == false).Include(c => c.User).Select(c => new CaseUserDto
+            {
+                Id = c.Id,
+                NomerOfCase = c.NomerOfCase,
+                NameOfCurt = c.NameOfCurt,
+                Applicant = c.Applicant,
+                Defendant = c.Defendant,
+                Reason = c.Reason,
+                DateOfCurt = c.DateOfCurt,
+                CreatedDate = c.CreatedDate,
+                ResultOfCurt= c.ResultOfCurt,
+                DateOfResult= c.DateOfResult,
+                IsMarkeredByAdmin = c.IsMarkeredByAdmin,
+                IsUnMarkeredByAdmin = c.IsUnMarkeredByAdmin,
+                IsNotificated = c.IsNotificated,
+                IsArhcived = c.IsArhcived,
+                ArchivedDate = c.ArchivedDate,
+                UserFio = c.User.FIO
+
+            }).ToListAsync();
         }
 
         public async Task<CaseResponseDTO?> GetDetailCasesById( Guid userId, Guid caseId)

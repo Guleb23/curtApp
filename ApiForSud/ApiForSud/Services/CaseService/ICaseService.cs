@@ -7,7 +7,7 @@ namespace ApiForSud.Services.CaseService
     {
         public Task<Case> CreateCase(CaseDTO caseDTO, Guid userId);
 
-        public Task<List<Case>> GetAllCases();
+        public Task<List<CaseUserDto>> GetAllCases();
         public Task<List<Case>> GatArchiveCases();
         
 

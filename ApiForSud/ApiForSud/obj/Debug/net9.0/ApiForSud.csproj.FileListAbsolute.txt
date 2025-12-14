@@ -435,3 +435,4 @@ C:\Users\юзер\Desktop\curtProject\curtApp\ApiForSud\ApiForSud\bin\Debug\net9
 C:\Users\юзер\Desktop\curtProject\curtApp\ApiForSud\ApiForSud\bin\Debug\net9.0\BouncyCastle.Crypto.dll
 C:\Users\юзер\Desktop\curtProject\curtApp\ApiForSud\ApiForSud\bin\Debug\net9.0\BouncyCastle.Cryptography.dll
 C:\Users\юзер\Desktop\curtProject\curtApp\ApiForSud\ApiForSud\bin\Debug\net9.0\itext.bouncy-castle-adapter.dll
+C:\Users\юзер\Desktop\curtProject\curtApp\ApiForSud\ApiForSud\bin\Debug\net9.0\ApiForSud.staticwebassets.runtime.json

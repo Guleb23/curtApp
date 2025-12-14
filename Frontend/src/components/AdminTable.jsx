@@ -42,6 +42,29 @@ const AdminTable = ({ cases, loading, onDetailInfo, onRefresh }) => {
             header: () => <div style={{ textAlign: 'center', width: '100%' }}>ДЕЛО</div>,
             columns: [
                 {
+                    accessorKey: 'userFio',
+                    header: 'Дело ведет',
+                    cell: info => {
+                        const userFio = info.getValue();
+                        return userFio ? (
+                            <div style={{
+                                fontSize: '12px',
+                                color: '#2d3748',
+                                fontWeight: '500',
+                                backgroundColor: '#f7fafc',
+                                padding: '6px 10px',
+                                borderRadius: '4px',
+                                border: '1px solid #e2e8f0'
+                            }}>
+                                {userFio}
+                            </div>
+                        ) : (
+                            <span style={{ color: '#a0aec0', fontStyle: 'italic' }}>Не назначено</span>
+                        );
+                    },
+                    size: 180,
+                },
+                {
                     accessorKey: 'nomerOfCase',
                     header: '№ дела',
                     cell: info => {
@@ -60,6 +83,7 @@ const AdminTable = ({ cases, loading, onDetailInfo, onRefresh }) => {
                     },
                     size: 150,
                 },
+
                 {
                     accessorKey: 'nameOfCurt',
                     header: 'Наименование суда',

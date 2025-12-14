@@ -43,7 +43,7 @@ namespace ApiForSud.Controllers
 
         [Authorize]
         [HttpGet("allcases")]
-        public async Task<ActionResult<List<Case>>> GetAllCases()
+        public async Task<ActionResult<List<CaseUserDto>>> GetAllCases()
         {
             return await _caseService.GetAllCases();
         }
